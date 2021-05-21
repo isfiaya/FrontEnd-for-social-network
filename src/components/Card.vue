@@ -97,19 +97,43 @@ export default {
     },
 
     fetchData() {
+      const id = localStorage.getItem("id");
+      const userId = parseInt(id);
       axios.get("http://localhost:3000/home/like").then((response) => {
         const data = response.data;
         const likes = data.filter((like) => like.postId == this.postId);
         this.numberLikes = likes.length;
+
+        const userLikes = likes.filter((user) => user.userId == userId);
+        console.log(userLikes.length);
+
+        if (userLikes.length > 0) {
+          this.isLike = true;
+        }
+        if (userLikes.length == 0) {
+          this.isLike = false;
+        }
       });
     },
   },
   created() {
+    const id = localStorage.getItem("id");
+    const userId = parseInt(id);
     axios.get("http://localhost:3000/home/like").then((response) => {
       const data = response.data;
       const likes = data.filter((like) => like.postId == this.postId);
-      // console.log(data);
+      console.log(likes);
       this.numberLikes = likes.length;
+
+      const userLikes = likes.filter((user) => user.userId == userId);
+      console.log(userLikes.length);
+
+      if (userLikes.length > 0) {
+        this.isLike = true;
+      }
+      if (userLikes.length == 0) {
+        this.isLike = false;
+      }
     });
   },
   props: ["desc", "img", "firstName", "lastName", "postId"],
