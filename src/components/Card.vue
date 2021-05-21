@@ -29,7 +29,7 @@
       <div class="post-meta">
         <button class="post-meta-like" @click="submitClick">
           <i class="far fa-thumbs-up" :class="{likeBtn : isLike}"></i>
-          <span>201</span>
+          <span>{{ numberLikes}}</span>
           <span>Likes</span>
         </button>
 
@@ -71,6 +71,7 @@ export default {
   data: () => ({
     isShowComments: false,
     isLike: false,
+    numberLikes: null,
   }),
   methods: {
     toggleComment() {
@@ -93,6 +94,13 @@ export default {
           console.log(response.data);
         });
     },
+  },
+  created() {
+    axios.get("http://localhost:3000/home/like").then((response) => {
+      const data = response.data;
+      const likes = data.filter((like) => like.postId == this.postId);
+      this.numberLikes = likes.length;
+    });
   },
   props: ["desc", "img", "firstName", "lastName", "postId"],
 };
