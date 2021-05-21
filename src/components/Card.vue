@@ -27,7 +27,7 @@
         </figure>
       </div>
       <div class="post-meta">
-        <button class="post-meta-like" @click="likeClick">
+        <button class="post-meta-like" @click="submitClick">
           <i class="far fa-thumbs-up" :class="{likeBtn : isLike}"></i>
           <span>201</span>
           <span>Likes</span>
@@ -62,6 +62,7 @@
 
 <script>
 import Comment from "@/components/Comment.vue";
+import axios from "axios";
 export default {
   name: "Card",
   components: {
@@ -78,8 +79,22 @@ export default {
     likeClick() {
       this.isLike = this.isLike == false ? true : false;
     },
+
+    submitClick() {
+      this.likeClick();
+      const id = localStorage.getItem("id");
+      const userId = parseInt(id);
+      axios
+        .post("http://localhost:3000/home/like", {
+          userId: userId,
+          postId: this.postId,
+        })
+        .then((response) => {
+          console.log(response.data);
+        });
+    },
   },
-  props: ["desc", "img", "firstName", "lastName"],
+  props: ["desc", "img", "firstName", "lastName", "postId"],
 };
 </script>
 
