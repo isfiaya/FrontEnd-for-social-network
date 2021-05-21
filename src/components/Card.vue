@@ -77,12 +77,12 @@ export default {
     toggleComment() {
       this.isShowComments = this.isShowComments == false ? true : false;
     },
-    likeClick() {
-      this.isLike = this.isLike == false ? true : false;
-    },
+    // likeClick() {
+    //   this.isLike = this.isLike == false ? true : false;
+    // },
 
     submitClick() {
-      this.likeClick();
+      // this.likeClick();
       const id = localStorage.getItem("id");
       const userId = parseInt(id);
       axios
@@ -92,13 +92,23 @@ export default {
         })
         .then((response) => {
           console.log(response.data);
+          this.fetchData();
         });
+    },
+
+    fetchData() {
+      axios.get("http://localhost:3000/home/like").then((response) => {
+        const data = response.data;
+        const likes = data.filter((like) => like.postId == this.postId);
+        this.numberLikes = likes.length;
+      });
     },
   },
   created() {
     axios.get("http://localhost:3000/home/like").then((response) => {
       const data = response.data;
       const likes = data.filter((like) => like.postId == this.postId);
+      // console.log(data);
       this.numberLikes = likes.length;
     });
   },
