@@ -50,13 +50,6 @@ export default {
     axios.get("http://localhost:3000/home").then((response) => {
       const data = response.data;
       this.posts = data;
-      console.log(data);
-
-      const dateNow = Date.now();
-      const dateCreated = Date.parse(data[1].createAt);
-
-      const seconds = Math.floor((dateNow - dateCreated) / 1000);
-      console.log(seconds / 86400);
     });
   },
 };
