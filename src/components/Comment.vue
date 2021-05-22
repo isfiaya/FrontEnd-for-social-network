@@ -1,26 +1,45 @@
 <template>
-  <div class="comment">
+  <li class="comment">
     <div class="info">
       <img src="@/assets/aymen.jpg" alt />
-      <p>aymen isfiaya</p>
+      <p>{{firstName + " " + lastName}}</p>
     </div>
     <div class="inputComment">
-      <span>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum,
-        voluptas.
-      </span>
+      <span>{{msg}}</span>
     </div>
-    <div class="tools">
-      <p>Reply</p>
+    <div class="tools" v-if="userCommentId">
       <p>Edit</p>
       <p>Delete</p>
     </div>
-  </div>
+  </li>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "Comment",
+  data() {
+    return {
+      firstName: null,
+      lastName: null,
+      userCommentId: false,
+    };
+  },
+  props: ["msg", "id"],
+  created() {
+    const userId = this.id;
+    const userConnect = localStorage.getItem("id");
+    axios.get("http://localhost:3000/home/users").then((response) => {
+      const data = response.data;
+      const dataFilter = data.filter((user) => user.id == parseInt(userId));
+      console.log(dataFilter);
+      this.firstName = dataFilter[0].first_name;
+      this.lastName = dataFilter[0].last_name;
+      if (dataFilter[0].id == userConnect) {
+        this.userCommentId = true;
+      }
+    });
+  },
 };
 </script>
 

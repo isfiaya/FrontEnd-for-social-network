@@ -35,7 +35,7 @@
 
         <button @click="toggleComment" class="post-comment">
           <i class="far fa-comment-alt"></i>
-          <span>41</span>
+          <span>{{numberComment}}</span>
           <span>commenter</span>
         </button>
 
@@ -48,12 +48,8 @@
 
       <section class="comments" v-if="isShowComments">
         <ul class="comments-list">
-          <li>
-            <Comment />
-          </li>
-          <li>
-            <Comment />
-          </li>
+          <Comment v-for="comment in arrayComments" :msg="comment.comment" :postId="comment.postId" :id="comment.userId" :key="comment.id" />
+
           <li>
             <div class="wrapComment">
               <div class="imgComment">
@@ -86,7 +82,9 @@ export default {
     isLike: false,
     userComment: null,
     numberLikes: null,
+    numberComment: null,
     timeAgo: null,
+    arrayComments: null,
   }),
   methods: {
     toggleComment() {
@@ -164,25 +162,31 @@ export default {
         })
         .then((response) => {
           console.log(response);
+          this.getComment();
+          this.userComment = "";
         });
+    },
+    getComment() {
+      const postId = this.postId;
+      // const id = localStorage.getItem("id");
+      // const userId = parseInt(id);
+      axios.get("http://localhost:3000/home/comment").then((response) => {
+        const data = response.data;
+        const dataFilterComment = data.filter(
+          (comment) => comment.postId == postId
+        );
+        this.numberComment = dataFilterComment.length;
+
+        console.log(dataFilterComment);
+
+        this.arrayComments = dataFilterComment;
+      });
     },
   },
   created() {
     this.timeSince();
-    const id = localStorage.getItem("id");
-    const userId = parseInt(id);
-    axios.get("http://localhost:3000/home/like").then((response) => {
-      const data = response.data;
-      const likes = data.filter((like) => like.postId == this.postId);
-      this.numberLikes = likes.length;
-      const userLikes = likes.filter((user) => user.userId == userId);
-      if (userLikes.length > 0) {
-        this.isLike = true;
-      }
-      if (userLikes.length == 0) {
-        this.isLike = false;
-      }
-    });
+    this.fetchData();
+    this.getComment();
   },
   props: ["desc", "img", "firstName", "lastName", "postId", "createAt"],
 };
