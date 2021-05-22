@@ -15,7 +15,7 @@
         <h6 class="author">
           <a href="profile.html">{{firstName + ' ' + lastName }}</a>
         </h6>
-        <span class="post-time">20 min ago</span>
+        <span class="post-time">{{timeAgo}} ago</span>
       </div>
     </div>
 
@@ -72,17 +72,13 @@ export default {
     isShowComments: false,
     isLike: false,
     numberLikes: null,
+    timeAgo: null,
   }),
   methods: {
     toggleComment() {
       this.isShowComments = this.isShowComments == false ? true : false;
     },
-    // likeClick() {
-    //   this.isLike = this.isLike == false ? true : false;
-    // },
-
     submitClick() {
-      // this.likeClick();
       const id = localStorage.getItem("id");
       const userId = parseInt(id);
       axios
@@ -95,7 +91,6 @@ export default {
           this.fetchData();
         });
     },
-
     fetchData() {
       const id = localStorage.getItem("id");
       const userId = parseInt(id);
@@ -105,7 +100,6 @@ export default {
         this.numberLikes = likes.length;
 
         const userLikes = likes.filter((user) => user.userId == userId);
-        console.log(userLikes.length);
 
         if (userLikes.length > 0) {
           this.isLike = true;
@@ -115,19 +109,43 @@ export default {
         }
       });
     },
+    timeSince() {
+      const dateNow = Date.now();
+      const dateCreated = Date.parse(this.createAt);
+      const seconds = Math.floor((dateNow - dateCreated) / 1000);
+      let interval = seconds / 31536000;
+
+      if (interval > 1) {
+        return (this.timeAgo = Math.floor(interval) + " years");
+      }
+      interval = seconds / 2592000;
+      if (interval > 1) {
+        return (this.timeAgo = Math.floor(interval) + " months");
+      }
+      interval = seconds / 86400;
+      if (interval > 1) {
+        return (this.timeAgo = Math.floor(interval) + " days");
+      }
+      interval = seconds / 3600;
+      if (interval > 1) {
+        return (this.timeAgo = Math.floor(interval) + " hours");
+      }
+      interval = seconds / 60;
+      if (interval > 1) {
+        return (this.timeAgo = Math.floor(interval) + " minutes");
+      }
+      return (this.timeAgo = Math.floor(seconds) + " seconds");
+    },
   },
   created() {
+    this.timeSince();
     const id = localStorage.getItem("id");
     const userId = parseInt(id);
     axios.get("http://localhost:3000/home/like").then((response) => {
       const data = response.data;
       const likes = data.filter((like) => like.postId == this.postId);
-      console.log(likes);
       this.numberLikes = likes.length;
-
       const userLikes = likes.filter((user) => user.userId == userId);
-      console.log(userLikes.length);
-
       if (userLikes.length > 0) {
         this.isLike = true;
       }
@@ -136,7 +154,7 @@ export default {
       }
     });
   },
-  props: ["desc", "img", "firstName", "lastName", "postId"],
+  props: ["desc", "img", "firstName", "lastName", "postId", "createAt"],
 };
 </script>
 

@@ -11,7 +11,7 @@
         <div class="col-lg-8 main-post">
           <Panel></Panel>
           <!-- Post /////-->
-          <Card v-for="post in posts" :desc="post.message" :img="post.image" :firstName="post.first_name" :lastName="post.last_name" :postId="post.id" :key="post.id" />
+          <Card v-for="post in posts" :desc="post.message" :img="post.image" :firstName="post.first_name" :lastName="post.last_name" :postId="post.id" :createAt="post.createAt" :key="post.id" />
         </div>
         <aside class="col-lg-4 main-aside">
           <SideRight />
@@ -51,8 +51,12 @@ export default {
       const data = response.data;
       this.posts = data;
       console.log(data);
-      console.log(Date.now());
-      console.log((Date.now() - Date.parse(data[0].createAt)) / 1000);
+
+      const dateNow = Date.now();
+      const dateCreated = Date.parse(data[1].createAt);
+
+      const seconds = Math.floor((dateNow - dateCreated) / 1000);
+      console.log(seconds / 86400);
     });
   },
 };
