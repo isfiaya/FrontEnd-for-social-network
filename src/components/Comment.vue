@@ -8,8 +8,8 @@
       <span>{{msg}}</span>
     </div>
     <div class="tools" v-if="userCommentId">
-      <p>Edit</p>
-      <p>Delete</p>
+      <button class="mr-3">Edit</button>
+      <button @click="deleteComment">Delete</button>
     </div>
   </li>
 </template>
@@ -25,14 +25,27 @@ export default {
       userCommentId: false,
     };
   },
-  props: ["msg", "id"],
+  props: ["msg", "id", "postId", "idComment"],
+  methods: {
+    deleteComment() {
+      // const idUserDelete = localStorage.getItem("id");
+      // const idUser = parseInt(idUserDelete);
+      axios
+        .delete("http://localhost:3000/home/comment", {
+          idComment: this.idComment,
+        })
+        .then((response) => {
+          console.log(response);
+          console.log(this.idComment);
+        });
+    },
+  },
   created() {
     const userId = this.id;
     const userConnect = localStorage.getItem("id");
     axios.get("http://localhost:3000/home/users").then((response) => {
       const data = response.data;
       const dataFilter = data.filter((user) => user.id == parseInt(userId));
-      console.log(dataFilter);
       this.firstName = dataFilter[0].first_name;
       this.lastName = dataFilter[0].last_name;
       if (dataFilter[0].id == userConnect) {

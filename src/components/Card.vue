@@ -48,7 +48,7 @@
 
       <section class="comments" v-if="isShowComments">
         <ul class="comments-list">
-          <Comment v-for="comment in arrayComments" :msg="comment.comment" :postId="comment.postId" :id="comment.userId" :key="comment.id" />
+          <Comment v-for="comment in arrayComments" :msg="comment.comment" :postId="comment.postId" :id="comment.userId" :idComment="comment.id" :key="comment.id" />
 
           <li>
             <div class="wrapComment">
@@ -89,6 +89,7 @@ export default {
   methods: {
     toggleComment() {
       this.isShowComments = this.isShowComments == false ? true : false;
+      this.getComment();
     },
     submitClick() {
       const id = localStorage.getItem("id");
@@ -168,17 +169,13 @@ export default {
     },
     getComment() {
       const postId = this.postId;
-      // const id = localStorage.getItem("id");
-      // const userId = parseInt(id);
       axios.get("http://localhost:3000/home/comment").then((response) => {
         const data = response.data;
         const dataFilterComment = data.filter(
           (comment) => comment.postId == postId
         );
+        this.arrayComments = null;
         this.numberComment = dataFilterComment.length;
-
-        console.log(dataFilterComment);
-
         this.arrayComments = dataFilterComment;
       });
     },
