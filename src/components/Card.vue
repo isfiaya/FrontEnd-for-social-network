@@ -209,11 +209,14 @@ export default {
             })
             .then((response) => {
               console.log(response);
+              this.fetchAllPost();
             });
           Swal.fire("Deleted!", "Your file has been deleted.", "success");
-          window.location.reload();
         }
       });
+    },
+    fetchAllPost() {
+      this.$parent.fetchAllPost();
     },
   },
   created() {

@@ -1,11 +1,6 @@
 <template>
   <div class="panel">
-    <textarea
-      placeholder="Whats in your mind today?"
-      rows="2"
-      class="form-control input-lg p-text-area"
-      v-model="message"
-    ></textarea>
+    <textarea placeholder="Whats in your mind today?" rows="2" class="form-control input-lg p-text-area" v-model="message"></textarea>
     <img :src="img" class="imgPreview" />
 
     <footer>
@@ -14,13 +9,7 @@
           <label class="btn-camera">
             <i class="fa fa-camera"></i>
             <span>
-              <input
-                type="file"
-                id="file"
-                ref="file"
-                @change="onFileChange"
-                @click="resetFileUploader"
-              />
+              <input type="file" id="file" ref="file" @change="onFileChange" @click="resetFileUploader" />
             </span>
           </label>
         </li>
@@ -75,7 +64,7 @@ export default {
           });
           // console.log(response);
           // this.message = "";
-          window.location.reload();
+          this.fetchAllPost();
         })
         .catch(() => {
           Swal.fire({
@@ -98,6 +87,9 @@ export default {
     removeImage() {
       this.img = "";
       this.file = "";
+    },
+    fetchAllPost() {
+      this.$parent.fetchAllPost();
     },
   },
 };
