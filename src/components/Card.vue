@@ -178,7 +178,6 @@ export default {
         const dataFilterComment = data.filter(
           (comment) => comment.postId == postId
         );
-        this.arrayComments = null;
         this.numberComment = dataFilterComment.length;
         this.arrayComments = dataFilterComment;
       });

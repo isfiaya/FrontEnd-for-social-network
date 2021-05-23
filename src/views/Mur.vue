@@ -11,7 +11,7 @@
         <div class="col-lg-8 main-post">
           <Panel></Panel>
           <!-- Post /////-->
-          <Card v-for="post in posts" :desc="post.message" :img="post.image" :firstName="post.first_name" :lastName="post.last_name" :postId="post.id" :createAt="post.createAt" :userId="post.userId" :key="post.id" />
+          <Card ref="card" v-for="post in posts" :desc="post.message" :img="post.image" :firstName="post.first_name" :lastName="post.last_name" :postId="post.id" :createAt="post.createAt" :userId="post.userId" :key="post.id" />
         </div>
         <aside class="col-lg-4 main-aside">
           <SideRight />

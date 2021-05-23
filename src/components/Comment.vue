@@ -28,8 +28,6 @@ export default {
   props: ["msg", "id", "postId", "idComment"],
   methods: {
     deleteComment() {
-      // const idUserDelete = localStorage.getItem("id");
-      // const idUser = parseInt(idUserDelete);
       axios
         .delete("http://localhost:3000/home/comment", {
           data: {
@@ -38,8 +36,11 @@ export default {
         })
         .then((response) => {
           console.log(response);
-          console.log(this.idComment);
+          this.getComment();
         });
+    },
+    getComment() {
+      this.$parent.getComment();
     },
   },
   created() {
