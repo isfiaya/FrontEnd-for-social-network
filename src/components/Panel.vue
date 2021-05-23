@@ -64,6 +64,9 @@ export default {
           });
           // console.log(response);
           // this.message = "";
+          this.message = null;
+          this.img = null;
+          this.$refs.file.value = "";
           this.fetchAllPost();
         })
         .catch(() => {
@@ -78,7 +81,7 @@ export default {
       this.$refs.file.value = "";
     },
     onFileChange(e) {
-      // this.file = this.$refs.file.files[0];
+      this.file = this.$refs.file.files[0];
       let files = e.target.files;
       if (!files.length) return;
 

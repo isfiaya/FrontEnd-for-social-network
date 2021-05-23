@@ -1,6 +1,6 @@
 <template>
   <div class="member">
-    <img src="@/assets/aymen.jpg" alt />
+    <img src="@/assets/user.png" alt />
     <div class="info">
       <p>{{first_name + ' ' + last_name}}</p>
       <p>2 hours ago</p>

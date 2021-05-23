@@ -5,7 +5,7 @@
       <div class="profile-thumb">
         <a href="#">
           <figure class="profile-thumb-middle">
-            <img src="../assets/aymen.jpg" alt="profile picture" />
+            <img src="@/assets/user.png" alt="profile picture" />
           </figure>
         </a>
       </div>
@@ -55,7 +55,7 @@
           <li>
             <div class="wrapComment">
               <div class="imgComment">
-                <img src="@/assets/aymen.jpg" alt />
+                <img src="@/assets/user.png" alt />
               </div>
               <div class="inputComment">
                 <input type="text" v-model="userComment" placeholder="Add a comment..." />

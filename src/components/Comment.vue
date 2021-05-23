@@ -1,11 +1,11 @@
 <template>
   <li class="comment">
     <div class="info">
-      <img src="@/assets/aymen.jpg" alt />
+      <img src="@/assets/user.png" alt />
       <p>{{firstName + " " + lastName}}</p>
     </div>
     <div class="inputComment">
-      <span>{{msg}}</span>
+      <span class="inputComment-Comment">{{msg}}</span>
     </div>
     <div class="tools" v-if="userCommentId">
       <button class="mr-3">Edit</button>
@@ -86,6 +86,47 @@ export default {
     margin-left: 40px;
     p {
       margin-right: 15px;
+    }
+  }
+}
+.wrapComment {
+  display: flex;
+  align-items: center;
+  .imgComment {
+    width: 10%;
+    img {
+      max-width: 40px;
+      border-radius: 50%;
+      height: auto;
+    }
+  }
+  .inputComment {
+    width: 70%;
+    input {
+      padding: 7px;
+      width: 100%;
+      border-radius: 30px;
+      outline: none;
+      border: 2px solid #e7edf2;
+      background-color: #eee;
+    }
+  }
+  .btnComment {
+    margin-left: 20px;
+
+    button {
+      padding: 7px 20px 7px 20px;
+      border-radius: 20px;
+      outline: none;
+      background-color: #8224e3;
+      background-image: linear-gradient(
+        90deg,
+        #8224e3 0,
+        #a968ec 50%,
+        #8224e3 100%
+      );
+      box-shadow: 0 1px 2px 0 rgb(130 36 227 / 50%);
+      color: #fff;
     }
   }
 }

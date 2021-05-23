@@ -9,7 +9,7 @@
     </div>
     <div class="avatar">
       <div class="profile-img">
-        <img src="@/assets/aymen.jpg" alt />
+        <img src="@/assets/user.png" alt />
       </div>
       <h3>Aymen isfiaya</h3>
     </div>

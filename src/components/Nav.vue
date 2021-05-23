@@ -16,7 +16,7 @@
           <i class="fas fa-sign-out-alt"></i>
         </li>
         <li class="badge">
-          <img src="@/assets/aymen.jpg" alt />
+          <img src="@/assets/user.png" alt />
         </li>
       </ul>
     </div>

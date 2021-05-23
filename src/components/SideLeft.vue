@@ -6,7 +6,7 @@
       <p>Socail Network</p>
       <div class="card">
         <div class="info">
-          <img src="@/assets/aymen.jpg" alt="profile" />
+          <img src="@/assets/user.png" alt="profile" />
           <p>{{first_name + ` ` + last_name}}</p>
           <p>Member</p>
         </div>
