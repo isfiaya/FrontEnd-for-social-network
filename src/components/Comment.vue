@@ -32,7 +32,9 @@ export default {
       // const idUser = parseInt(idUserDelete);
       axios
         .delete("http://localhost:3000/home/comment", {
-          idComment: this.idComment,
+          data: {
+            idComment: this.idComment,
+          },
         })
         .then((response) => {
           console.log(response);
