@@ -11,6 +11,8 @@
       </div>
       <!-- profile picture end -->
 
+      <button type="button" class="btn btn-outline-danger" v-if="showBtnDeletePost" @click="requestDeletPost">X</button>
+
       <div class="posted-author">
         <h6 class="author">
           <a href="profile.html">{{firstName + ' ' + lastName }}</a>
@@ -72,6 +74,7 @@
 <script>
 import Comment from "@/components/Comment.vue";
 import axios from "axios";
+import Swal from "sweetalert2";
 export default {
   name: "Card",
   components: {
@@ -85,6 +88,7 @@ export default {
     numberComment: null,
     timeAgo: null,
     arrayComments: null,
+    showBtnDeletePost: false,
   }),
   methods: {
     toggleComment() {
@@ -179,18 +183,61 @@ export default {
         this.arrayComments = dataFilterComment;
       });
     },
+    showBtnDelete() {
+      const id = localStorage.getItem("id");
+      console.log(this.userId);
+      if (id == this.userId) {
+        this.showBtnDeletePost = true;
+      }
+    },
+    requestDeletPost() {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const id = this.postId;
+          axios
+            .delete("http://localhost:3000/home", {
+              data: {
+                id: id,
+              },
+            })
+            .then((response) => {
+              console.log(response);
+            });
+          Swal.fire("Deleted!", "Your file has been deleted.", "success");
+          window.location.reload();
+        }
+      });
+    },
   },
   created() {
-    this.timeSince();
-    this.fetchData();
     this.getComment();
+    this.fetchData();
+    this.timeSince();
+    this.showBtnDelete();
   },
-  props: ["desc", "img", "firstName", "lastName", "postId", "createAt"],
+  props: [
+    "desc",
+    "img",
+    "firstName",
+    "lastName",
+    "postId",
+    "createAt",
+    "userId",
+  ],
 };
 </script>
 
 <style lang="scss" scoped>
 .card {
+  position: relative;
   border: solid 1px #eeeeee;
   border-radius: 12px;
   padding: 30px;
@@ -347,5 +394,12 @@ export default {
       color: #fff;
     }
   }
+}
+
+.btn-outline-danger {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  border: none;
 }
 </style>
