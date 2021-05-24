@@ -7,7 +7,9 @@
       <div class="items">
         <ul>
           <li>
-            <i class="fas fa-home"></i>Activity
+            <router-link to="/home">
+              <i class="fas fa-home"></i>Activity
+            </router-link>
           </li>
           <li>
             <i class="fas fa-image"></i>
@@ -107,6 +109,12 @@ export default {
         display: flex;
         flex-direction: column;
         opacity: 80%;
+        a {
+          color: none !important;
+        }
+        a:hover {
+          text-decoration: none;
+        }
         i {
           margin-bottom: 10px;
         }

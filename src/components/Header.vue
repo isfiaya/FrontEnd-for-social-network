@@ -9,16 +9,25 @@
     </div>
     <div class="avatar">
       <div class="profile-img">
-        <img src="@/assets/user.png" alt />
+        <label class="btn-camera">
+          <i class="fa fa-camera"></i>
+          <span>
+            <input type="file" id="file" ref="file" @change="onFileChange" />
+          </span>
+        </label>
+        <img :src="img" alt />
       </div>
       <h3>Aymen isfiaya</h3>
     </div>
 
     <div class="list">
       <ul>
-        <li>
-          <i class="fas fa-home"></i>Activity
-        </li>
+        <router-link to="/home">
+          <li>
+            <i class="fas fa-home"></i>Activity
+          </li>
+        </router-link>
+
         <li>
           <i class="fas fa-user"></i>Profile
         </li>
@@ -36,6 +45,18 @@
 <script>
 export default {
   name: "Header",
+  data() {
+    return {
+      img: null,
+    };
+  },
+  methods: {
+    onFileChange(e) {
+      let files = e.target.files;
+      if (!files.length) return;
+      this.img = URL.createObjectURL(files[0]);
+    },
+  },
 };
 </script>
 
@@ -76,6 +97,7 @@ export default {
   height: 200px;
   overflow: hidden;
   padding: 1px;
+  position: relative;
   img {
     border-radius: 12px;
     width: 100%;
@@ -99,13 +121,28 @@ export default {
     list-style: none;
     display: flex;
     justify-content: center;
-
+    a:hover {
+      text-decoration: none;
+    }
     li {
       display: flex;
       flex-direction: column;
       text-align: center;
       margin-left: 50px;
     }
+  }
+}
+.btn-camera {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  position: absolute;
+  left: calc(50% - 12.5px);
+  top: calc(50% - 12.5px);
+  span input {
+    opacity: 0;
+    width: 0;
+    height: 0;
   }
 }
 </style>

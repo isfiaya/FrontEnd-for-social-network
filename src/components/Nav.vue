@@ -16,7 +16,12 @@
           <i class="fas fa-sign-out-alt"></i>
         </li>
         <li class="badge">
-          <img src="@/assets/user.png" alt />
+          <router-link :to="{
+            name:'profile',
+            query:{id:id} 
+          }">
+            <img src="@/assets/user.png" alt />
+          </router-link>
         </li>
       </ul>
     </div>
@@ -27,6 +32,11 @@
 import Swal from "sweetalert2";
 export default {
   name: "Navbar",
+  data() {
+    return {
+      id: localStorage.getItem("id"),
+    };
+  },
   components: {},
   computed: {
     //
