@@ -15,12 +15,7 @@
 
     <main class="row">
       <div class="col-md-8 cards">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        <Card v-for="post in posts" :desc="post.message" :img="post.image" :firstName="post.first_name" :lastName="post.last_name" :postId="post.id" :createAt="post.createAt" :userId="post.userId" :key="post.id" />
       </div>
     </main>
   </div>
@@ -31,6 +26,7 @@ import Nav from "../components/Nav";
 import ProfileSide from "../components/ProfileSide";
 import Header from "../components/Header";
 import Card from "../components/Card";
+import axios from "axios";
 export default {
   name: "Profile",
   components: {
@@ -38,6 +34,28 @@ export default {
     ProfileSide,
     Header,
     Card,
+  },
+  data() {
+    return {
+      posts: null,
+    };
+  },
+  methods: {
+    async getUserPost() {
+      const id = this.$route.query.id;
+      console.log(id);
+      await axios
+        .post("http://localhost:3000/home/profile", {
+          id: id,
+        })
+        .then((response) => {
+          console.log(response.data);
+          this.posts = response.data;
+        });
+    },
+  },
+  created() {
+    this.getUserPost();
   },
 };
 </script>
