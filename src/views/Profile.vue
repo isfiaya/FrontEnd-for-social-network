@@ -9,7 +9,7 @@
       </aside>
 
       <header>
-        <Header :firstName="posts[0].first_name" :lastName="posts[0].last_name" />
+        <Header :firstName="firstName" :lastName="lastName" />
       </header>
     </div>
 
@@ -42,20 +42,22 @@ export default {
   data() {
     return {
       posts: null,
+      firstName: null,
+      lastName: null,
     };
   },
   methods: {
-    getUserPost() {
+    async getUserPost() {
       const id = this.$route.query.id;
-      axios
+      await axios
         .post("http://localhost:3000/home/profile", {
           id: id,
         })
         .then((response) => {
           console.log(response.data);
           this.posts = response.data;
-          this.firstName = response[0].first_name;
-          this.lastName = response[0].last_name;
+          this.firstName = response.data[0].first_name;
+          this.lastName = response.data[0].last_name;
         });
     },
   },
