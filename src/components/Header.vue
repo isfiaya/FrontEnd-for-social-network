@@ -17,7 +17,7 @@
         </label>
         <img :src="img" alt />
       </div>
-      <h3>Aymen isfiaya</h3>
+      <h3>{{ firstName + ' ' + lastName}}</h3>
     </div>
 
     <div class="list">
@@ -50,6 +50,7 @@ export default {
       img: null,
     };
   },
+  props: ["firstName", "lastName"],
   methods: {
     onFileChange(e) {
       let files = e.target.files;

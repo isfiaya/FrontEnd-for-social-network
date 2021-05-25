@@ -9,12 +9,14 @@
       </aside>
 
       <header>
-        <Header />
+        <Header :firstName="posts[0].first_name" :lastName="posts[0].last_name" />
       </header>
     </div>
 
     <main class="row">
       <div class="col-md-8 cards">
+        <Panel />
+
         <Card v-for="post in posts" :desc="post.message" :img="post.image" :firstName="post.first_name" :lastName="post.last_name" :postId="post.id" :createAt="post.createAt" :userId="post.userId" :key="post.id" />
       </div>
     </main>
@@ -26,11 +28,13 @@ import Nav from "../components/Nav";
 import ProfileSide from "../components/ProfileSide";
 import Header from "../components/Header";
 import Card from "../components/Card";
+import Panel from "../components/Panel";
 import axios from "axios";
 export default {
   name: "Profile",
   components: {
     Nav,
+    Panel,
     ProfileSide,
     Header,
     Card,
@@ -41,16 +45,17 @@ export default {
     };
   },
   methods: {
-    async getUserPost() {
+    getUserPost() {
       const id = this.$route.query.id;
-      console.log(id);
-      await axios
+      axios
         .post("http://localhost:3000/home/profile", {
           id: id,
         })
         .then((response) => {
           console.log(response.data);
           this.posts = response.data;
+          this.firstName = response[0].first_name;
+          this.lastName = response[0].last_name;
         });
     },
   },

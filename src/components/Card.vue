@@ -184,7 +184,6 @@ export default {
     },
     showBtnDelete() {
       const id = localStorage.getItem("id");
-      console.log(this.userId);
       if (id == this.userId) {
         this.showBtnDeletePost = true;
       }
