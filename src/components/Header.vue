@@ -65,6 +65,9 @@ export default {
   height: 60vh;
   position: relative;
   border-bottom: solid 1px #e7edf2;
+  @media (max-width: 768px) {
+    border-bottom: none;
+  }
 }
 .cover {
   width: 100%;
@@ -107,12 +110,16 @@ export default {
 .avatar {
   width: 200px;
   position: absolute;
-  bottom: 30px;
+  bottom: 0px;
   left: 30px;
   text-align: center;
   h3 {
     font-size: 18px;
     margin-top: 16px;
+  }
+  @media (max-width: 768px) {
+    left: calc(50% - 100px);
+    top: calc(100% - 200px);
   }
 }
 .list {
@@ -121,6 +128,7 @@ export default {
     list-style: none;
     display: flex;
     justify-content: center;
+    padding-left: 0;
     a:hover {
       text-decoration: none;
     }
@@ -130,6 +138,9 @@ export default {
       text-align: center;
       margin-left: 50px;
     }
+  }
+  @media (max-width: 768px) {
+    margin-top: 9rem;
   }
 }
 .btn-camera {
