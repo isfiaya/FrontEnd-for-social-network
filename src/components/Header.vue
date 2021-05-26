@@ -8,16 +8,25 @@
       </div>
     </div>
     <div class="avatar">
-      <div class="profile-img">
-        <label class="btn-camera">
+      <div class="profile-img" @click="box=true">
+        <!-- <label class="btn-camera">
           <i class="fa fa-camera"></i>
           <span>
             <input type="file" id="file" ref="file" @change="onFileChange" />
           </span>
-        </label>
+        </label>-->
         <img :src="img" alt />
       </div>
+
       <h3>{{ firstName + ' ' + lastName}}</h3>
+      <div class="overlay-image" v-if="box">
+        <div class="box animate__animated animate__fadeIn">
+          <p>Change Profile Photo</p>
+          <input type="file" id="file" ref="file" class="custom-file-input" @change="onFileChange" />
+          <button class="btnRemove">Remove Current Photo</button>
+          <button @click="box=false">Cancel</button>
+        </div>
+      </div>
     </div>
 
     <div class="list">
@@ -48,6 +57,7 @@ export default {
   data() {
     return {
       img: null,
+      box: false,
     };
   },
   props: ["firstName", "lastName"],
@@ -55,6 +65,7 @@ export default {
     onFileChange(e) {
       let files = e.target.files;
       if (!files.length) return;
+      this.box = false;
       this.img = URL.createObjectURL(files[0]);
     },
   },
@@ -156,5 +167,71 @@ export default {
     width: 0;
     height: 0;
   }
+}
+.overlay-image {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.65);
+  z-index: 2;
+  justify-content: space-around;
+  .box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: white;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 260px;
+    border-radius: 12px;
+    background-color: #fff;
+    color: black;
+    height: 222px;
+    p {
+      color: #262626;
+      font-size: 18px;
+      font-weight: 600;
+      padding-top: 20px;
+    }
+    input,
+    button {
+      border-top: 1px solid #dbdbdb;
+      padding: 10px 0;
+      cursor: pointer;
+    }
+    .custom-file-input {
+      opacity: 1;
+      height: auto;
+      color: transparent;
+    }
+    .custom-file-input::-webkit-file-upload-button {
+      visibility: hidden;
+    }
+    .custom-file-input::before {
+      content: "Upload Photo";
+      display: inline-block;
+      color: #0095f6;
+      font-weight: 700;
+      padding: 5px 8px;
+      outline: none;
+      white-space: nowrap;
+      font-size: 10pt;
+      position: absolute;
+      left: calc(50% - 56px);
+    }
+    .btnRemove {
+      color: #ed4956;
+      font-weight: 700;
+    }
+  }
+}
+.animate__animated.animate__fadeIn {
+  --animate-duration: 300ms;
 }
 </style>
