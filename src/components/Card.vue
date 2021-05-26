@@ -208,7 +208,12 @@ export default {
             })
             .then((response) => {
               console.log(response);
-              this.fetchAllPost();
+              if (this.$route.name == "home") {
+                return this.fetchAllPost();
+              }
+              if (this.$route.name == "profile") {
+                return this.getUserPost();
+              }
             });
           Swal.fire("Deleted!", "Your file has been deleted.", "success");
         }
@@ -216,6 +221,9 @@ export default {
     },
     fetchAllPost() {
       this.$parent.fetchAllPost();
+    },
+    getUserPost() {
+      this.$parent.getUserPost();
     },
   },
   created() {
