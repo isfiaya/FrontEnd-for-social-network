@@ -16,7 +16,6 @@
     <main class="row">
       <div class="col-md-8 cards">
         <Panel />
-
         <Card v-for="post in posts" :desc="post.message" :img="post.image" :firstName="post.first_name" :lastName="post.last_name" :postId="post.id" :createAt="post.createAt" :userId="post.userId" :key="post.id" />
       </div>
     </main>

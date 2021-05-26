@@ -63,11 +63,17 @@ export default {
             timer: 2000,
           });
           // console.log(response);
+
           // this.message = "";
           this.message = null;
           this.img = null;
           this.$refs.file.value = "";
-          this.fetchAllPost();
+          if (this.$route.name == "home") {
+            return this.fetchAllPost();
+          }
+          if (this.$route.name == "profile") {
+            return this.getUserPost();
+          }
         })
         .catch(() => {
           Swal.fire({
@@ -93,6 +99,9 @@ export default {
     },
     fetchAllPost() {
       this.$parent.fetchAllPost();
+    },
+    getUserPost() {
+      this.$parent.getUserPost();
     },
   },
 };
