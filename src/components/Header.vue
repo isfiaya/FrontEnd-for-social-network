@@ -17,7 +17,7 @@
         <div class="box animate__animated animate__fadeIn">
           <p>Change Profile Photo</p>
           <input type="file" id="file" ref="file" class="custom-file-input" @change="onFileChange" @click="resetFileUploader" />
-          <button class="btnRemove">Remove Current Photo</button>
+          <button class="btnRemove" @click="deleteImageProfile">Remove Current Photo</button>
           <button @click="box=false">Cancel</button>
         </div>
       </div>
@@ -92,6 +92,19 @@ export default {
         const dataFilter = data.filter((user) => user.id == parseInt(userId));
         this.img = dataFilter[0].imageUser;
       });
+    },
+    deleteImageProfile() {
+      const id = localStorage.getItem("id");
+      axios
+        .delete("http://localhost:3000/home/users/images", {
+          data: {
+            id: id,
+          },
+        })
+        .then((response) => {
+          console.log(response);
+          this.img = null;
+        });
     },
   },
   created() {
