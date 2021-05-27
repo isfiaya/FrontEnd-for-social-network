@@ -55,9 +55,10 @@ export default {
       box: false,
       file: null,
       oneUser: null,
+      firstName: null,
+      lastName: null,
     };
   },
-  props: ["firstName", "lastName"],
   methods: {
     onFileChange(e) {
       let files = e.target.files;
@@ -86,12 +87,19 @@ export default {
       this.$refs.file.value = "";
     },
     getOneUser() {
-      const userId = localStorage.getItem("id");
-      axios.get("http://localhost:3000/home/users").then((response) => {
-        const data = response.data;
-        const dataFilter = data.filter((user) => user.id == parseInt(userId));
-        this.img = dataFilter[0].imageUser;
-      });
+      const id = this.$route.query.id;
+      console.log(id);
+      axios
+        .post("http://localhost:3000/home/users", {
+          id: id,
+        })
+        .then((response) => {
+          console.log(response.data[0]);
+          const data = response.data[0];
+          this.firstName = data.first_name;
+          this.lastName = data.last_name;
+          this.img = data.imageUser;
+        });
     },
     deleteImageProfile() {
       const id = localStorage.getItem("id");

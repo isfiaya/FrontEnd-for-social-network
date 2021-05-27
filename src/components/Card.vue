@@ -16,7 +16,7 @@
 
       <div class="posted-author">
         <h6 class="author">
-          <a href="profile.html">{{firstName + ' ' + lastName }}</a>
+          <router-link :to="{name:'profile', query:{id:userId}}">{{firstName + ' ' + lastName }}</router-link>
         </h6>
         <span class="post-time">{{timeAgo}} ago</span>
       </div>

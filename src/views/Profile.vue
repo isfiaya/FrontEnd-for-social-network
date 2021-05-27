@@ -9,7 +9,7 @@
       </aside>
 
       <header>
-        <Header :firstName="firstName" :lastName="lastName" />
+        <Header />
       </header>
     </div>
 
