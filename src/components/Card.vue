@@ -3,12 +3,12 @@
     <div class="post-title d-flex align-items-center">
       <!-- profile picture end -->
       <div class="profile-thumb">
-        <a href="#">
+        <router-link :to="{name:'profile', query:{id:userId}}">
           <figure class="profile-thumb-middle">
             <img src="@/assets/user.png" alt="profile picture" v-if="!picProfile" />
             <img :src="picProfile" alt="profile picture" v-if="picProfile" />
           </figure>
-        </a>
+        </router-link>
       </div>
       <!-- profile picture end -->
 

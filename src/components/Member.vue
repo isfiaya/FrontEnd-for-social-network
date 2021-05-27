@@ -1,9 +1,18 @@
 <template>
   <div class="member">
-    <img src="@/assets/user.png" alt="user image" v-if="!pic" />
-    <img :src="pic" alt="user image" v-if="pic" />
+    <router-link :to="{
+        name:'profile',
+        query:{id:userID}
+      }">
+      <img src="@/assets/user.png" alt="user image" v-if="!pic" />
+      <img :src="pic" alt="user image" v-if="pic" />
+    </router-link>
+
     <div class="info">
-      <p>{{first_name + ' ' + last_name}}</p>
+      <router-link :to="{
+        name:'profile',
+        query:{id:userID}
+      }">{{first_name + ' ' + last_name}}</router-link>
       <p>2 hours ago</p>
     </div>
   </div>
@@ -12,7 +21,7 @@
 <script>
 export default {
   name: "Member",
-  props: ["first_name", "last_name", "pic"],
+  props: ["first_name", "last_name", "pic", "userID"],
 };
 </script>
 
@@ -22,12 +31,16 @@ export default {
   margin-bottom: 10px;
   img {
     width: 40px;
-    height: auto;
+    height: 40px;
     border-radius: 50%;
   }
   .info {
     margin-left: 15px;
     line-height: 1.5;
+    a {
+      color: black;
+      text-decoration: none;
+    }
     p {
       font-weight: 500;
       margin-bottom: 0 !important;
