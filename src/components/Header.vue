@@ -54,6 +54,7 @@ export default {
       img: null,
       box: false,
       file: null,
+      oneUser: null,
     };
   },
   props: ["firstName", "lastName"],
@@ -84,6 +85,17 @@ export default {
     resetFileUploader() {
       this.$refs.file.value = "";
     },
+    getOneUser() {
+      const userId = localStorage.getItem("id");
+      axios.get("http://localhost:3000/home/users").then((response) => {
+        const data = response.data;
+        const dataFilter = data.filter((user) => user.id == parseInt(userId));
+        this.img = dataFilter[0].imageUser;
+      });
+    },
+  },
+  created() {
+    this.getOneUser();
   },
 };
 </script>
