@@ -9,20 +9,14 @@
     </div>
     <div class="avatar">
       <div class="profile-img" @click="box=true">
-        <!-- <label class="btn-camera">
-          <i class="fa fa-camera"></i>
-          <span>
-            <input type="file" id="file" ref="file" @change="onFileChange" />
-          </span>
-        </label>-->
         <img :src="img" alt />
       </div>
 
       <h3>{{ firstName + ' ' + lastName}}</h3>
-      <div class="overlay-image" v-if="box">
+      <div class="overlay-image" v-if="box" @click="box=false">
         <div class="box animate__animated animate__fadeIn">
           <p>Change Profile Photo</p>
-          <input type="file" id="file" ref="file" class="custom-file-input" @change="onFileChange" />
+          <input type="file" id="file" ref="file" class="custom-file-input" @change="onFileChange" @click="resetFileUploader" />
           <button class="btnRemove">Remove Current Photo</button>
           <button @click="box=false">Cancel</button>
         </div>
@@ -52,21 +46,43 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "Header",
   data() {
     return {
       img: null,
       box: false,
+      file: null,
     };
   },
   props: ["firstName", "lastName"],
   methods: {
     onFileChange(e) {
       let files = e.target.files;
+      this.file = files[0];
       if (!files.length) return;
       this.box = false;
       this.img = URL.createObjectURL(files[0]);
+      this.setImageProfile();
+    },
+    async setImageProfile() {
+      const id = localStorage.getItem("id");
+      const formData = new FormData();
+      formData.append("image", this.file);
+      formData.append("id", id);
+      await axios
+        .post("http://localhost:3000/home/users/images", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((response) => {
+          console.log(response);
+        });
+    },
+    resetFileUploader() {
+      this.$refs.file.value = "";
     },
   },
 };
