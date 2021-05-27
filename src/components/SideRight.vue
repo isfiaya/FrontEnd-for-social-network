@@ -3,7 +3,7 @@
     <div class="main">
       <h3>Members</h3>
       <div class="members">
-        <Member v-for="user in users" :first_name="user.first_name" :last_name="user.last_name" :key="user.id" />
+        <Member v-for="user in users" :first_name="user.first_name" :pic="user.imageUser" :last_name="user.last_name" :key="user.id" />
       </div>
     </div>
     <footer>

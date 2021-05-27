@@ -20,7 +20,8 @@
             name:'profile',
             query:{id:id} 
           }">
-            <img src="@/assets/user.png" alt />
+            <img src="@/assets/user.png" alt="imgProfile" v-if="!img" />
+            <img :src="img" alt="imgProfile" v-if="img" />
           </router-link>
         </li>
       </ul>
@@ -30,11 +31,13 @@
 
 <script>
 import Swal from "sweetalert2";
+import axios from "axios";
 export default {
   name: "Navbar",
   data() {
     return {
       id: localStorage.getItem("id"),
+      img: null,
     };
   },
   components: {},
@@ -52,6 +55,17 @@ export default {
         timerProgressBar: true,
       });
     },
+    getOneUser() {
+      const userId = localStorage.getItem("id");
+      axios.get("http://localhost:3000/home/users").then((response) => {
+        const data = response.data;
+        const dataFilter = data.filter((user) => user.id == parseInt(userId));
+        this.img = dataFilter[0].imageUser;
+      });
+    },
+  },
+  created() {
+    this.getOneUser();
   },
 };
 </script>

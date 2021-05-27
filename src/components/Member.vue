@@ -1,6 +1,7 @@
 <template>
   <div class="member">
-    <img src="@/assets/user.png" alt />
+    <img src="@/assets/user.png" alt="user image" v-if="!pic" />
+    <img :src="pic" alt="user image" v-if="pic" />
     <div class="info">
       <p>{{first_name + ' ' + last_name}}</p>
       <p>2 hours ago</p>
@@ -11,7 +12,7 @@
 <script>
 export default {
   name: "Member",
-  props: ["first_name", "last_name"],
+  props: ["first_name", "last_name", "pic"],
 };
 </script>
 

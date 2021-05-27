@@ -5,7 +5,8 @@
       <div class="profile-thumb">
         <a href="#">
           <figure class="profile-thumb-middle">
-            <img src="@/assets/user.png" alt="profile picture" />
+            <img src="@/assets/user.png" alt="profile picture" v-if="!picProfile" />
+            <img :src="picProfile" alt="profile picture" v-if="picProfile" />
           </figure>
         </a>
       </div>
@@ -89,6 +90,7 @@ export default {
     timeAgo: null,
     arrayComments: null,
     showBtnDeletePost: false,
+    picProfile: null,
   }),
   methods: {
     toggleComment() {
@@ -225,12 +227,21 @@ export default {
     getUserPost() {
       this.$parent.getUserPost();
     },
+    getOneUser() {
+      const userId = this.userId;
+      axios.get("http://localhost:3000/home/users").then((response) => {
+        const data = response.data;
+        const dataFilter = data.filter((user) => user.id == parseInt(userId));
+        this.picProfile = dataFilter[0].imageUser;
+      });
+    },
   },
   created() {
     this.getComment();
     this.fetchData();
     this.timeSince();
     this.showBtnDelete();
+    this.getOneUser();
   },
   props: [
     "desc",

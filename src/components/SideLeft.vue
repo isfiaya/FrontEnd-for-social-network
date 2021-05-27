@@ -6,7 +6,8 @@
       <p>Socail Network</p>
       <div class="card">
         <div class="info">
-          <img src="@/assets/user.png" alt="profile" />
+          <img src="@/assets/user.png" alt="profile" v-if="!img" />
+          <img :src="img" alt="profile" v-if="img" />
           <p>{{first_name + ` ` + last_name}}</p>
           <p>Member</p>
         </div>
@@ -58,17 +59,30 @@
 
 
 <script>
+import axios from "axios";
 export default {
   name: "SideLeft",
   data: function () {
     return {
       first_name: "",
       last_name: "",
+      img: null,
     };
+  },
+  methods: {
+    getOneUser() {
+      const userId = localStorage.getItem("id");
+      axios.get("http://localhost:3000/home/users").then((response) => {
+        const data = response.data;
+        const dataFilter = data.filter((user) => user.id == parseInt(userId));
+        this.img = dataFilter[0].imageUser;
+      });
+    },
   },
   created: function () {
     this.first_name = localStorage.getItem("first_name");
     this.last_name = localStorage.getItem("last_name");
+    this.getOneUser();
   },
 };
 </script>
