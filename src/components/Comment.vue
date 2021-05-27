@@ -1,8 +1,18 @@
 <template>
   <li class="comment">
     <div class="info">
-      <img src="@/assets/user.png" alt />
-      <p>{{firstName + " " + lastName}}</p>
+      <router-link :to="{
+        name:'profile',
+        query:{id:id}
+      }">
+        <img src="@/assets/user.png" alt="userImage" v-if="!img" />
+        <img :src="img" alt="userImage" v-if="img" />
+      </router-link>
+
+      <router-link :to="{
+        name:'profile',
+        query:{id:id}
+      }">{{firstName + " " + lastName}}</router-link>
     </div>
     <div class="inputComment">
       <span class="inputComment-Comment">{{msg}}</span>
@@ -23,6 +33,7 @@ export default {
       firstName: null,
       lastName: null,
       userCommentId: false,
+      img: null,
     };
   },
   props: ["msg", "id", "postId", "idComment"],
@@ -51,6 +62,7 @@ export default {
       const dataFilter = data.filter((user) => user.id == parseInt(userId));
       this.firstName = dataFilter[0].first_name;
       this.lastName = dataFilter[0].last_name;
+      this.img = dataFilter[0].imageUser;
       if (dataFilter[0].id == userConnect) {
         this.userCommentId = true;
       }
@@ -66,10 +78,15 @@ export default {
   .info {
     display: flex;
     align-items: center;
+    a {
+      color: black;
+      text-decoration: none;
+    }
     img {
       width: 40px;
-      height: auto;
+      height: 40px;
       border-radius: 50%;
+      border: 1px solid #eeeeee;
       margin-right: 15px;
     }
   }

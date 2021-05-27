@@ -56,7 +56,8 @@
           <li>
             <div class="wrapComment">
               <div class="imgComment">
-                <img src="@/assets/user.png" alt />
+                <img src="@/assets/user.png" alt="userImage" v-if="!imgCommentSection" />
+                <img :src="imgCommentSection" alt="userImage" v-if="imgCommentSection" />
               </div>
               <div class="inputComment">
                 <input type="text" v-model="userComment" placeholder="Add a comment..." />
@@ -91,6 +92,7 @@ export default {
     arrayComments: null,
     showBtnDeletePost: false,
     picProfile: null,
+    imgCommentSection: null,
   }),
   methods: {
     toggleComment() {
@@ -235,6 +237,17 @@ export default {
         this.picProfile = dataFilter[0].imageUser;
       });
     },
+    getImgCommentSection() {
+      const id = localStorage.getItem("id");
+      axios
+        .post("http://localhost:3000/home/users", {
+          id: id,
+        })
+        .then((response) => {
+          const data = response.data[0];
+          this.imgCommentSection = data.imageUser;
+        });
+    },
   },
   created() {
     this.getComment();
@@ -242,6 +255,7 @@ export default {
     this.timeSince();
     this.showBtnDelete();
     this.getOneUser();
+    this.getImgCommentSection();
   },
   props: [
     "desc",
