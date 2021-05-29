@@ -2,7 +2,7 @@
   <div class="member">
     <router-link :to="{
         name:'profile',
-        query:{id:userID}
+        params:{id:userID}
       }">
       <img src="@/assets/user.png" alt="user image" v-if="!pic" />
       <img :src="pic" alt="user image" v-if="pic" />
@@ -11,7 +11,7 @@
     <div class="info">
       <router-link :to="{
         name:'profile',
-        query:{id:userID}
+        params:{id:userID}
       }">{{first_name + ' ' + last_name}}</router-link>
       <p>2 hours ago</p>
     </div>

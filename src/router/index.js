@@ -4,6 +4,8 @@ import Log from '../views/Log.vue';
 import Sign from '../views/Sign.vue';
 import Mur from '../views/Mur.vue';
 import Profile from '../views/Profile.vue';
+import Card from '../components/Card.vue';
+import InfoUser from '../components/InfoUser.vue';
 
 Vue.use(VueRouter);
 
@@ -27,12 +29,25 @@ const routes = [
   {
     path: '/home',
     name: 'home',
-    component: Mur
+    component: Mur,
   },
   {
-    path: '/profile',
+    path: '/profile:id',
     name: 'profile',
-    component: Profile
+    component: Profile,
+    children: [
+      {
+        path: '',
+        name: 'profile',
+        props: true,
+        component: Card
+      },
+      {
+        path: 'info',
+        name: 'info',
+        component: InfoUser
+      }
+    ]
   },
 ]
 

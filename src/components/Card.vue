@@ -3,7 +3,7 @@
     <div class="post-title d-flex align-items-center">
       <!-- profile picture end -->
       <div class="profile-thumb">
-        <router-link :to="{name:'profile', query:{id:userId}}">
+        <router-link :to="{name:'profile', params:{id:userId}}">
           <figure class="profile-thumb-middle">
             <img src="@/assets/user.png" alt="profile picture" v-if="!picProfile" />
             <img :src="picProfile" alt="profile picture" v-if="picProfile" />
@@ -16,7 +16,7 @@
 
       <div class="posted-author">
         <h6 class="author">
-          <router-link :to="{name:'profile', query:{id:userId}}">{{firstName + ' ' + lastName }}</router-link>
+          <router-link :to="{name:'profile', params:{id:userId}}">{{firstName + ' ' + lastName }}</router-link>
         </h6>
         <span class="post-time">{{timeAgo}} ago</span>
       </div>

@@ -3,7 +3,7 @@
     <div class="info">
       <router-link :to="{
         name:'profile',
-        query:{id:id}
+        params:{id:id}
       }">
         <img src="@/assets/user.png" alt="userImage" v-if="!img" />
         <img :src="img" alt="userImage" v-if="img" />
@@ -11,7 +11,7 @@
 
       <router-link :to="{
         name:'profile',
-        query:{id:id}
+        params:{id:id}
       }">{{firstName + " " + lastName}}</router-link>
     </div>
     <div class="inputComment">

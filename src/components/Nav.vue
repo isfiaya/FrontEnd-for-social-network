@@ -18,7 +18,7 @@
         <li class="badge">
           <router-link :to="{
             name:'profile',
-            query:{id:id} 
+            params:{id:id} 
           }">
             <img src="@/assets/user.png" alt="imgProfile" v-if="!img" />
             <img :src="img" alt="imgProfile" v-if="img" />

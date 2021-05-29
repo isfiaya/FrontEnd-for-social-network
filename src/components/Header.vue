@@ -13,7 +13,7 @@
       </div>
 
       <h3>{{ firstName + ' ' + lastName}}</h3>
-      <div class="overlay-image" v-if="box && userID == this.$route.query.id" @click="box=false">
+      <div class="overlay-image" v-if="box && userID == this.$route.params.id" @click="box=false">
         <div class="box animate__animated animate__fadeIn">
           <p>Change Profile Photo</p>
           <input type="file" id="file" ref="file" class="custom-file-input" @change="onFileChange" @click="resetFileUploader" />
@@ -88,7 +88,7 @@ export default {
       this.$refs.file.value = "";
     },
     getOneUser() {
-      const id = this.$route.query.id;
+      const id = this.$route.params.id;
       console.log(id);
       axios
         .post("http://localhost:3000/home/users", {

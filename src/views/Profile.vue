@@ -15,8 +15,10 @@
 
     <main class="row">
       <div class="col-md-8 cards">
-        <Panel />
-        <Card v-for="post in posts" :desc="post.message" :img="post.image" :firstName="post.first_name" :lastName="post.last_name" :postId="post.id" :createAt="post.createAt" :userId="post.userId" :key="post.id" />
+        <Panel v-if="paramsId == userId" />
+        <router-view v-for="post in posts" :desc="post.message" :img="post.image" :firstName="post.first_name" :lastName="post.last_name" :postId="post.id" :createAt="post.createAt" :userId="post.userId" :key="post.id"></router-view>
+
+        <!-- <Card v-for="post in posts" :desc="post.message" :img="post.image" :firstName="post.first_name" :lastName="post.last_name" :postId="post.id" :createAt="post.createAt" :userId="post.userId" :key="post.id" /> -->
       </div>
     </main>
   </div>
@@ -26,7 +28,7 @@
 import Nav from "../components/Nav";
 import ProfileSide from "../components/ProfileSide";
 import Header from "../components/Header";
-import Card from "../components/Card";
+// import Card from "../components/Card";
 import Panel from "../components/Panel";
 import axios from "axios";
 export default {
@@ -36,18 +38,21 @@ export default {
     Panel,
     ProfileSide,
     Header,
-    Card,
+    // Card,
   },
   data() {
     return {
       posts: null,
       firstName: null,
       lastName: null,
+      paramsId: this.$route.params.id,
+      userId: localStorage.getItem("id"),
     };
   },
   methods: {
     async getUserPost() {
-      const id = this.$route.query.id;
+      const id = this.$route.params.id;
+      console.log(id);
       await axios
         .post("http://localhost:3000/home/profile", {
           id: id,
