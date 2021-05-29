@@ -25,21 +25,23 @@
 
     <div class="list">
       <ul>
-        <router-link to="/home">
-          <li>
+        <li>
+          <router-link to="/home">
             <i class="fas fa-home"></i>Activity
-          </li>
-        </router-link>
+          </router-link>
+        </li>
 
         <li>
-          <i class="fas fa-user"></i>Profile
+          <router-link to="info">
+            <i class="fas fa-user"></i>Profile
+          </router-link>
         </li>
-        <li>
+        <!-- <li>
           <i class="fas fa-users"></i>Friends
-        </li>
-        <li>
+        </li>-->
+        <!-- <li>
           <i class="fas fa-user-friends"></i>Groups
-        </li>
+        </li>-->
       </ul>
     </div>
   </div>
@@ -195,10 +197,12 @@ export default {
       text-decoration: none;
     }
     li {
-      display: flex;
-      flex-direction: column;
-      text-align: center;
       margin-left: 50px;
+      a {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+      }
     }
   }
   @media (max-width: 768px) {

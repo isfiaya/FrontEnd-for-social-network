@@ -15,8 +15,10 @@
 
     <main class="row">
       <div class="col-md-8 cards">
-        <Panel v-if="paramsId == userId" />
-        <router-view v-for="post in posts" :desc="post.message" :img="post.image" :firstName="post.first_name" :lastName="post.last_name" :postId="post.id" :createAt="post.createAt" :userId="post.userId" :key="post.id"></router-view>
+        <!-- <Panel v-if="paramsId == userId && this.$route.path == `/profile${paramsId}/`" /> -->
+        <router-view name="Panel"></router-view>
+        <router-view name="Card" v-for="post in posts" :desc="post.message" :img="post.image" :firstName="post.first_name" :lastName="post.last_name" :postId="post.id" :createAt="post.createAt" :userId="post.userId" :key="post.id"></router-view>
+        <router-view name="InfoUser"></router-view>
 
         <!-- <Card v-for="post in posts" :desc="post.message" :img="post.image" :firstName="post.first_name" :lastName="post.last_name" :postId="post.id" :createAt="post.createAt" :userId="post.userId" :key="post.id" /> -->
       </div>
@@ -29,13 +31,13 @@ import Nav from "../components/Nav";
 import ProfileSide from "../components/ProfileSide";
 import Header from "../components/Header";
 // import Card from "../components/Card";
-import Panel from "../components/Panel";
+// import Panel from "../components/Panel";
 import axios from "axios";
 export default {
   name: "Profile",
   components: {
     Nav,
-    Panel,
+    // Panel,
     ProfileSide,
     Header,
     // Card,

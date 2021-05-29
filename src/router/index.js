@@ -5,6 +5,7 @@ import Sign from '../views/Sign.vue';
 import Mur from '../views/Mur.vue';
 import Profile from '../views/Profile.vue';
 import Card from '../components/Card.vue';
+import Panel from '../components/Panel.vue';
 import InfoUser from '../components/InfoUser.vue';
 
 Vue.use(VueRouter);
@@ -40,12 +41,18 @@ const routes = [
         path: '',
         name: 'profile',
         props: true,
-        component: Card
+        components: {
+          Panel,
+          Card,
+        }
       },
       {
         path: 'info',
         name: 'info',
-        component: InfoUser
+        props: true,
+        components: {
+          InfoUser
+        }
       }
     ]
   },
