@@ -1,5 +1,15 @@
 <template>
   <div class="wrap">
+    <nav>
+      <ul>
+        <li>
+          <router-link to="info">View</router-link>
+        </li>
+        <li>
+          <router-link to="edit" v-if="idParam == idUser">Edit</router-link>
+        </li>
+      </ul>
+    </nav>
     <div>
       <h2>View Profile</h2>
       <h3 class="sub-title">Base</h3>
@@ -12,19 +22,19 @@
         </tr>
         <tr>
           <td class="label">Date of Birth</td>
-          <td class="pl-4">1992-02-25</td>
+          <td class="pl-4">{{dateBrith}}</td>
         </tr>
         <tr>
           <td class="label">Sex</td>
-          <td class="pl-4 customColor">Male</td>
+          <td class="pl-4 customColor">{{gender}}</td>
         </tr>
         <tr>
           <td class="label">City</td>
-          <td class="pl-4">Gafsa</td>
+          <td class="pl-4">{{city}}</td>
         </tr>
         <tr>
           <td class="label">Country</td>
-          <td class="pl-4 customColor">Tunisia</td>
+          <td class="pl-4 customColor">{{country}}</td>
         </tr>
       </tbody>
     </table>
@@ -37,28 +47,38 @@ export default {
   name: "InfoUser",
   data() {
     return {
+      idUser: localStorage.getItem("id"),
+      idParam: this.$route.params.id,
       firstName: null,
       lastName: null,
+      gender: null,
+      city: null,
+      country: null,
+      dateBrith: null,
     };
   },
   methods: {
-    async getUserPost() {
+    async getUserData() {
       const id = this.$route.params.id;
       console.log(id);
       await axios
-        .post("http://localhost:3000/home/profile", {
+        .post("http://localhost:3000/home/users", {
           id: id,
         })
         .then((response) => {
           console.log(response.data);
-          this.posts = response.data;
           this.firstName = response.data[0].first_name;
           this.lastName = response.data[0].last_name;
+          this.gender = response.data[0].gender;
+          this.city = response.data[0].city;
+          this.country = response.data[0].country;
+          const brith = response.data[0].dateBrith;
+          this.dateBrith = brith.split("T")[0];
         });
     },
   },
   created() {
-    this.getUserPost();
+    this.getUserData();
   },
 };
 </script>
@@ -66,6 +86,24 @@ export default {
 <style lang="scss" scoped>
 .wrap {
   margin-bottom: 5rem;
+}
+nav {
+  margin-bottom: 1.5rem;
+  ul {
+    width: 100%;
+    border-bottom: 1px solid #e7edf2;
+    list-style: none;
+    display: flex;
+    padding-left: 0;
+    li {
+      border-bottom: 2px solid #8224e3;
+      padding: 5px;
+      padding-right: 30px;
+      a {
+        color: #8224e3;
+      }
+    }
+  }
 }
 .label {
   background: #f8f9fb;

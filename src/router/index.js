@@ -7,6 +7,7 @@ import Profile from '../views/Profile.vue';
 import Card from '../components/Card.vue';
 import Panel from '../components/Panel.vue';
 import InfoUser from '../components/InfoUser.vue';
+import InfoEdit from '../components/InfoEdit.vue';
 
 Vue.use(VueRouter);
 
@@ -52,6 +53,14 @@ const routes = [
         props: true,
         components: {
           InfoUser
+        }
+      },
+      {
+        path: 'edit',
+        name: 'edit',
+        props: true,
+        components: {
+          InfoEdit
         }
       }
     ]

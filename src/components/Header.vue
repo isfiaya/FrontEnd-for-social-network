@@ -36,6 +36,11 @@
             <i class="fas fa-user"></i>Profile
           </router-link>
         </li>
+        <li>
+          <router-link to="info">
+            <i class="fas fa-user"></i>Profile
+          </router-link>
+        </li>
         <!-- <li>
           <i class="fas fa-users"></i>Friends
         </li>-->
