@@ -114,6 +114,12 @@ export default {
         })
         .then((response) => {
           console.log(response);
+          Swal.fire({
+            icon: "success",
+            title: "Your changes has been saved",
+            showConfirmButton: false,
+            timer: 1500,
+          });
         });
     },
     deleteAccount() {

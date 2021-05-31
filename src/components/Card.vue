@@ -162,18 +162,19 @@ export default {
       const id = localStorage.getItem("id");
       const userId = parseInt(id);
       const comment = this.userComment;
-
-      axios
-        .post("http://localhost:3000/home/comment", {
-          userId: userId,
-          postId: postId,
-          comment: comment,
-        })
-        .then((response) => {
-          console.log(response);
-          this.getComment();
-          this.userComment = "";
-        });
+      if (comment) {
+        axios
+          .post("http://localhost:3000/home/comment", {
+            userId: userId,
+            postId: postId,
+            comment: comment,
+          })
+          .then((response) => {
+            console.log(response);
+            this.getComment();
+            this.userComment = "";
+          });
+      }
     },
     getComment() {
       const postId = this.postId;
@@ -426,6 +427,9 @@ export default {
       );
       box-shadow: 0 1px 2px 0 rgb(130 36 227 / 50%);
       color: #fff;
+    }
+    button:active {
+      transform: translateY(2px);
     }
   }
 }

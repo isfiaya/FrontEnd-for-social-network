@@ -129,4 +129,7 @@ nav {
     border-radius: 50%;
   }
 }
+.badge:active {
+  transform: translateY(2px);
+}
 </style>

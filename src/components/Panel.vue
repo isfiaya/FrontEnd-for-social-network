@@ -142,10 +142,27 @@ export default {
       padding: 0.375rem 2rem;
       color: #fff;
     }
+    .btn-post:active {
+      transform: translateY(2px);
+    }
     ul {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      li:nth-child(1) {
+        border: #e7e5e5 solid 1px;
+        text-align: center;
+        width: 30px;
+        background-color: #f1f2f4;
+        height: 31px;
+        border-radius: 15px;
+        label {
+          margin-bottom: 0;
+        }
+      }
+      li:nth-child(1):active {
+        transform: translateY(2px);
+      }
 
       li a {
         color: #7a7a7a !important;
@@ -162,6 +179,7 @@ export default {
   height: 25px;
   cursor: pointer;
   position: relative;
+
   span input {
     opacity: 0;
     width: 0;
