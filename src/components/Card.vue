@@ -219,7 +219,7 @@ export default {
                 return this.getUserPost();
               }
             });
-          Swal.fire("Deleted!", "Your file has been deleted.", "success");
+          Swal.fire("Deleted!", "Your post has been deleted.", "success");
         }
       });
     },

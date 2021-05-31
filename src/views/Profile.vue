@@ -42,25 +42,25 @@ export default {
   },
   data() {
     return {
-      posts: null,
       firstName: null,
       lastName: null,
       paramsId: this.$route.params.id,
       userId: localStorage.getItem("id"),
+      posts: null,
     };
   },
   methods: {
-    async getUserPost() {
+    getUserPost() {
       const id = this.$route.params.id;
       console.log(id);
-      await axios
+      axios
         .post("http://localhost:3000/home/profile", {
           id: id,
         })
         .then((response) => {
-          console.log(response.data);
-          if (response.data > 0) {
-            this.posts = response.data;
+          if (response.data.length > 0) {
+            const data = response.data;
+            this.posts = data;
             this.firstName = response.data[0].first_name;
             this.lastName = response.data[0].last_name;
           }

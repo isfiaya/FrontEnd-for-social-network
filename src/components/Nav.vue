@@ -15,7 +15,7 @@
         <li @click="logout">
           <i class="fas fa-sign-out-alt"></i>
         </li>
-        <li class="badge" @click="refreshPage">
+        <li class="badge">
           <router-link :to="{
             name:'profile',
             params:{id:id} 
@@ -62,9 +62,6 @@ export default {
         const dataFilter = data.filter((user) => user.id == parseInt(userId));
         this.img = dataFilter[0].imageUser;
       });
-    },
-    refreshPage() {
-      window.location.reload();
     },
   },
   created() {

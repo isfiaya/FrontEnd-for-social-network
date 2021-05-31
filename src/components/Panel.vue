@@ -31,7 +31,7 @@ export default {
   name: "Panel",
   data: function () {
     return {
-      message: null,
+      message: "",
       file: null,
       img: null,
     };
@@ -47,41 +47,36 @@ export default {
       formData.append("userId", userId);
       formData.append("first_name", firstName);
       formData.append("last_name", lastName);
-      console.log(formData);
 
-      await axios
-        .post("http://localhost:3000/home", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        })
-        .then(() => {
-          Swal.fire({
-            icon: "success",
-            title: "Your post has been saved",
-            showConfirmButton: false,
-            timer: 2000,
-          });
-          // console.log(response);
+      if (this.file || this.message) {
+        await axios
+          .post("http://localhost:3000/home", formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          })
+          .then(() => {
+            Swal.fire({
+              icon: "success",
+              title: "Your post has been saved",
+              showConfirmButton: false,
+              timer: 2000,
+            });
+            // console.log(response);
 
-          // this.message = "";
-          this.message = null;
-          this.img = null;
-          this.$refs.file.value = "";
-          if (this.$route.name == "home") {
-            return this.fetchAllPost();
-          }
-          if (this.$route.name == "profile") {
-            return this.getUserPost();
-          }
-        })
-        .catch(() => {
-          Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "your post is very tiny !",
+            // this.message = "";
+            this.message = "";
+            this.img = null;
+            this.file = "";
+            this.$refs.file.value = null;
+            if (this.$route.name == "home") {
+              return this.fetchAllPost();
+            }
+            if (this.$route.name == "profile") {
+              return this.getUserPost();
+            }
           });
-        });
+      }
     },
     resetFileUploader() {
       this.$refs.file.value = "";
