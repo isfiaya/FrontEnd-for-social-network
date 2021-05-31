@@ -67,6 +67,9 @@ export default {
     },
     sendUpdatedComment() {
       const newComment = this.message;
+      if (!newComment) {
+        return this.deleteComment();
+      }
       axios
         .post("http://localhost:3000/home/comment/edit", {
           id: this.CommentID,
@@ -74,6 +77,7 @@ export default {
         })
         .then((response) => {
           console.log(response);
+          this.getComment();
           this.edit = false;
         });
     },
