@@ -108,7 +108,7 @@ export default {
     background-color: white;
   }
   .main-post {
-    margin-top: 80px;
+    margin-top: 120px;
   }
   .main-aside {
     border-left: solid 1px #e7edf2;

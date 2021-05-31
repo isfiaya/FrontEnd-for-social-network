@@ -63,12 +63,14 @@
     </table>
     <div class="submit">
       <button class="btn-save-change" @click="submitInfoUser">Save Changes</button>
+      <button class="btn-delete-account ml-4" @click="deleteAccount">Delete Account</button>
     </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import Swal from "sweetalert2";
 export default {
   name: "InfoEdit",
   data() {
@@ -113,6 +115,33 @@ export default {
         .then((response) => {
           console.log(response);
         });
+    },
+    deleteAccount() {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const id = localStorage.getItem("id");
+          axios
+            .delete("http://localhost:3000/home/users/info", {
+              data: {
+                id: id,
+              },
+            })
+            .then((response) => {
+              console.log(response);
+              localStorage.clear();
+              this.$router.replace("/");
+            });
+          Swal.fire("Deleted!", "Your account has been deleted.", "success");
+        }
+      });
     },
   },
   created() {
@@ -189,6 +218,14 @@ h2 {
     #a968ec 50%,
     #8224e3 100%
   );
+  box-shadow: 0 1px 2px 0 rgb(130 36 227 / 50%);
+  color: #fff;
+  border-radius: 30px;
+  text-align: center;
+  padding: 0.475rem 1rem;
+}
+.btn-delete-account {
+  background-color: #d63031;
   box-shadow: 0 1px 2px 0 rgb(130 36 227 / 50%);
   color: #fff;
   border-radius: 30px;

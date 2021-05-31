@@ -8,7 +8,7 @@
         <ul>
           <li>
             <router-link to="/home">
-              <i class="fas fa-home"></i>Activity
+              <i class="fas fa-home"></i>Home
             </router-link>
           </li>
           <li>
@@ -114,6 +114,9 @@ export default {
         }
         a:hover {
           text-decoration: none;
+        }
+        a:visited {
+          color: black;
         }
         i {
           margin-bottom: 10px;

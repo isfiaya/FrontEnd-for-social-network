@@ -27,26 +27,23 @@
       <ul>
         <li>
           <router-link to="/home">
-            <i class="fas fa-home"></i>Activity
+            <i class="fas fa-home pb-1"></i>Home
           </router-link>
         </li>
 
         <li>
-          <router-link to="info">
-            <i class="fas fa-user"></i>Profile
+          <router-link class="boxTab" :to="{
+            name:'profile',
+            params:{id:idUserProfile}
+          }">
+            <i class="fas fa-user pb-1"></i>Posts
           </router-link>
         </li>
         <li>
           <router-link to="info">
-            <i class="fas fa-user"></i>Profile
+            <i class="fas fa-info pb-1"></i>About
           </router-link>
         </li>
-        <!-- <li>
-          <i class="fas fa-users"></i>Friends
-        </li>-->
-        <!-- <li>
-          <i class="fas fa-user-friends"></i>Groups
-        </li>-->
       </ul>
     </div>
   </div>
@@ -65,6 +62,8 @@ export default {
       firstName: null,
       lastName: null,
       userID: localStorage.getItem("id"),
+      idUserProfile: null,
+      namePath: null,
     };
   },
   methods: {
@@ -96,6 +95,7 @@ export default {
     },
     getOneUser() {
       const id = this.$route.params.id;
+      this.idUserProfile = id;
       console.log(id);
       axios
         .post("http://localhost:3000/home/users", {
@@ -122,9 +122,15 @@ export default {
           this.img = null;
         });
     },
+    checkPathName() {
+      if (this.$route.name == "profile") {
+        return (this.namePath = true);
+      }
+    },
   },
   created() {
     this.getOneUser();
+    this.checkPathName();
   },
 };
 </script>
@@ -198,15 +204,17 @@ export default {
     display: flex;
     justify-content: center;
     padding-left: 0;
+    gap: 30px;
     a:hover {
       text-decoration: none;
     }
     li {
-      margin-left: 50px;
       a {
         display: flex;
         flex-direction: column;
         text-align: center;
+        color: #838daa;
+        padding: 10px;
       }
     }
   }
@@ -293,4 +301,11 @@ export default {
 .animate__animated.animate__fadeIn {
   --animate-duration: 300ms;
 }
+
+// .boxTab:focus {
+//   background-color: #a45feb;
+//   border-radius: 10px;
+//   color: white !important;
+//   box-shadow: rgb(0 0 0 / 15%) 1.95px 1.95px 2.6px;
+// }
 </style>

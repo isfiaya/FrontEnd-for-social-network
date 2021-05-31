@@ -87,9 +87,11 @@ nav {
 
 .search {
   height: 28px;
+  width: 40%;
   i {
     font-size: 1rem;
     opacity: 60%;
+    width: 5%;
   }
   input {
     border: none;
@@ -101,6 +103,7 @@ nav {
     background: none;
     height: 100%;
     outline: none;
+    width: 85%;
   }
 }
 .icons {

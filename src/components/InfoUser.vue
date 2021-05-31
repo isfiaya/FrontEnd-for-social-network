@@ -73,7 +73,9 @@ export default {
           this.city = response.data[0].city;
           this.country = response.data[0].country;
           const brith = response.data[0].dateBrith;
-          this.dateBrith = brith.split("T")[0];
+          if (brith) {
+            this.dateBrith = brith.split("T")[0];
+          }
         });
     },
   },

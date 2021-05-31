@@ -42,11 +42,11 @@
           <span>commenter</span>
         </button>
 
-        <button class="post-share">
+        <!-- <button class="post-share">
           <i class="far fa-share-square"></i>
           <span>07</span>
           <span>Partager</span>
-        </button>
+        </button>-->
       </div>
 
       <section class="comments" v-if="isShowComments">
