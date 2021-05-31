@@ -14,7 +14,7 @@
         params:{id:id}
       }">{{firstName + " " + lastName}}</router-link>
     </div>
-    <div class="inputComment">
+    <div class="inputComment" :class="{boxShadow:edit}">
       <span class="inputComment-Comment" v-if="!edit">{{message}}</span>
       <input type="text" class="inputComment-Comment" v-model="message" v-if="edit" ref="comment" />
       <i class="fas fa-paper-plane icon-send-edit" v-if="edit" @click="sendUpdatedComment"></i>
@@ -192,5 +192,8 @@ export default {
       color: #fff;
     }
   }
+}
+.boxShadow {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 </style>
