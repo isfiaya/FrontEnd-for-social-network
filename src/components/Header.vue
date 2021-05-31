@@ -1,7 +1,7 @@
 <template>
   <div class="wrap">
     <div class="cover">
-      <img src="@/assets/cover.jpg" alt />
+      <img src="@/assets/DefaultCover.jpg" alt />
       <div class="icons">
         <i class="fas fa-edit"></i>
         <i class="fas fa-upload"></i>
@@ -9,7 +9,8 @@
     </div>
     <div class="avatar">
       <div class="profile-img" @click="box=true">
-        <img :src="img" alt />
+        <img src="@/assets/user.png" alt="profile" v-if="!img" />
+        <img :src="img" alt="profile image" v-if="img" />
       </div>
 
       <h3>{{ firstName + ' ' + lastName}}</h3>

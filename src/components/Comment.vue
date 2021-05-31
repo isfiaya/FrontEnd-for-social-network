@@ -15,10 +15,13 @@
       }">{{firstName + " " + lastName}}</router-link>
     </div>
     <div class="inputComment">
-      <span class="inputComment-Comment">{{msg}}</span>
+      <span class="inputComment-Comment" v-if="!edit">{{message}}</span>
+      <input type="text" class="inputComment-Comment" v-model="message" v-if="edit" ref="comment" />
+      <i class="fas fa-paper-plane icon-send-edit" v-if="edit" @click="sendUpdatedComment"></i>
     </div>
     <div class="tools" v-if="userCommentId">
-      <button class="mr-3">Edit</button>
+      <button class="mr-3" @click="showEditComment">Edit</button>
+      <button class="mr-3" @click="cancelEdit" v-if="edit">Cancel</button>
       <button @click="deleteComment">Delete</button>
     </div>
   </li>
@@ -34,6 +37,9 @@ export default {
       lastName: null,
       userCommentId: false,
       img: null,
+      edit: false,
+      message: this.msg,
+      CommentID: this.idComment,
     };
   },
   props: ["msg", "id", "postId", "idComment"],
@@ -53,7 +59,35 @@ export default {
     getComment() {
       this.$parent.getComment();
     },
+    showEditComment() {
+      this.edit = true;
+      setTimeout(() => {
+        this.$refs.comment.focus();
+      }, 100);
+    },
+    sendUpdatedComment() {
+      const newComment = this.message;
+      axios
+        .post("http://localhost:3000/home/comment/edit", {
+          id: this.CommentID,
+          comment: newComment,
+        })
+        .then((response) => {
+          console.log(response);
+          this.edit = false;
+        });
+    },
+    cancelEdit() {
+      const previousMessage = this.msg;
+      this.edit = false;
+      this.message = previousMessage;
+    },
   },
+  // mounted() {
+  //   if (this.edit) {
+  //     this.$refs.comment.focus();
+  //   }
+  // },
   created() {
     const userId = this.id;
     const userConnect = localStorage.getItem("id");
@@ -95,6 +129,14 @@ export default {
     border-radius: 20px;
     padding: 10px;
     margin-left: 40px;
+    input {
+      outline: none;
+      width: 90%;
+    }
+    .icon-send-edit {
+      float: right;
+      padding: 4px;
+    }
   }
 
   .tools {
