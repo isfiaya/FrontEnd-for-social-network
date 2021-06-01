@@ -5,7 +5,11 @@
       <img :src="coverImg" alt="cover image profile" v-if="coverImg" />
 
       <div class="icons-cover" v-if="userID == paramsID">
-        <i class="fas fa-eraser remove-cover" v-if="coverImg" @click="deleteCoverImage"></i>
+        <label class="remove-cover" v-if="coverImg" @click="deleteCoverImage">
+          <span class="tooltiptext">Remove Cover</span>
+          <i class="fas fa-eraser"></i>
+        </label>
+
         <label class="btn-upload-cover">
           <span class="tooltiptext">Add Cover Photo</span>
 
@@ -209,9 +213,9 @@ export default {
     bottom: 15px;
     right: 95px;
     padding: 10px;
-    line-height: 28px;
     width: 45px;
     height: 47px;
+    margin-bottom: 0;
     cursor: pointer;
     border-radius: 50%;
     text-align: center;
@@ -219,6 +223,11 @@ export default {
   }
   .remove-cover:active {
     transform: translateY(2px);
+  }
+  .remove-cover:hover {
+    .tooltiptext {
+      visibility: visible;
+    }
   }
 }
 .profile-img {
