@@ -1,10 +1,19 @@
 <template>
   <div class="wrap">
     <div class="cover">
-      <img src="@/assets/DefaultCover.jpg" alt />
-      <div class="icons">
-        <i class="fas fa-edit"></i>
-        <i class="fas fa-upload"></i>
+      <img src="@/assets/DefaultCover.jpg" alt="cover image profile" v-if="!coverImg" />
+      <img :src="coverImg" alt="cover image profile" v-if="coverImg" />
+
+      <div class="icons-cover" v-if="userID == paramsID">
+        <i class="fas fa-eraser remove-cover" v-if="coverImg" @click="deleteCoverImage"></i>
+        <label class="btn-upload-cover">
+          <span class="tooltiptext">Add Cover Photo</span>
+
+          <i class="fas fa-upload"></i>
+          <span>
+            <input type="file" id="file" ref="cover" @change="onFileChangeCover" @click="resetCoverUploader" />
+          </span>
+        </label>
       </div>
     </div>
     <div class="avatar">
@@ -56,6 +65,8 @@ export default {
   name: "Header",
   data() {
     return {
+      coverImg: null,
+      fileCover: null,
       img: null,
       box: false,
       file: null,
@@ -64,6 +75,7 @@ export default {
       lastName: null,
       userID: localStorage.getItem("id"),
       idUserProfile: null,
+      paramsID: this.$route.params.id,
       namePath: null,
     };
   },
@@ -75,6 +87,13 @@ export default {
       this.box = false;
       this.img = URL.createObjectURL(files[0]);
       this.setImageProfile();
+    },
+    onFileChangeCover(e) {
+      let files = e.target.files;
+      this.fileCover = files[0];
+      if (!files.length) return;
+      this.coverImg = URL.createObjectURL(files[0]);
+      this.setCoverImage();
     },
     async setImageProfile() {
       const id = localStorage.getItem("id");
@@ -91,8 +110,26 @@ export default {
           console.log(response);
         });
     },
+    setCoverImage() {
+      const id = localStorage.getItem("id");
+      const formData = new FormData();
+      formData.append("image", this.fileCover);
+      formData.append("id", id);
+      axios
+        .post("http://localhost:3000/home/users/images/cover", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((response) => {
+          console.log(response);
+        });
+    },
     resetFileUploader() {
       this.$refs.file.value = "";
+    },
+    resetCoverUploader() {
+      this.$refs.cover.value = "";
     },
     getOneUser() {
       const id = this.$route.params.id;
@@ -103,11 +140,12 @@ export default {
           id: id,
         })
         .then((response) => {
-          // console.log(response.data[0]);
+          console.log(response.data[0]);
           const data = response.data[0];
           this.firstName = data.first_name;
           this.lastName = data.last_name;
           this.img = data.imageUser;
+          this.coverImg = data.imgCover;
         });
     },
     deleteImageProfile() {
@@ -123,15 +161,28 @@ export default {
           this.img = null;
         });
     },
-    checkPathName() {
-      if (this.$route.name == "profile") {
-        return (this.namePath = true);
-      }
+    deleteCoverImage() {
+      const id = localStorage.getItem("id");
+      axios
+        .delete("http://localhost:3000/home/users/images/cover", {
+          data: {
+            id: id,
+          },
+        })
+        .then((response) => {
+          console.log(response);
+          this.coverImg = null;
+        });
     },
+    // checkPathName() {
+    //   if (this.$route.name == "profile") {
+    //     return (this.namePath = true);
+    //   }
+    // },
   },
   created() {
     this.getOneUser();
-    this.checkPathName();
+    // this.checkPathName();
   },
 };
 </script>
@@ -153,19 +204,21 @@ export default {
     width: 100%;
     height: 100%;
   }
-  .icons {
+  .remove-cover {
     position: absolute;
-    right: 20px;
-    bottom: 20px;
-    i {
-      margin-left: 20px;
-      background-color: #eee;
-
-      text-align: center;
-      padding: 10px;
-      border-radius: 50%;
-      cursor: pointer;
-    }
+    bottom: 15px;
+    right: 95px;
+    padding: 10px;
+    line-height: 28px;
+    width: 45px;
+    height: 47px;
+    cursor: pointer;
+    border-radius: 50%;
+    text-align: center;
+    background-color: #eee;
+  }
+  .remove-cover:active {
+    transform: translateY(2px);
   }
 }
 .profile-img {
@@ -313,6 +366,48 @@ export default {
 }
 .animate__animated.animate__fadeIn {
   --animate-duration: 300ms;
+}
+.btn-upload-cover {
+  margin-bottom: 0;
+  width: 45px;
+  cursor: pointer;
+  position: absolute;
+  bottom: 15px;
+  background-color: #eee;
+  padding: 10px;
+  border-radius: 50%;
+  text-align: center;
+  right: 35px;
+
+  span input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+}
+.tooltiptext {
+  visibility: hidden;
+  width: 100px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  font-size: 12px !important;
+  z-index: 1;
+  top: 100%;
+  left: 50%;
+  margin-left: -50px;
+  margin-top: 15px;
+}
+.btn-upload-cover:hover {
+  .tooltiptext {
+    visibility: visible;
+  }
+}
+.btn-upload-cover:active {
+  transform: translateY(2px);
 }
 
 // .boxTab:focus {
