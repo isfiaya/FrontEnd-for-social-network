@@ -210,12 +210,24 @@ export default {
       text-decoration: none;
     }
     li {
+      border-radius: 10px;
       a {
         display: flex;
         flex-direction: column;
         text-align: center;
         color: #838daa;
         padding: 10px;
+      }
+    }
+    li:hover {
+      background-color: #eee;
+      border-radius: 12px;
+    }
+    li:nth-child(2) {
+      box-shadow: 0 10px 20px -8px rgb(58 46 68 / 70%);
+      background: linear-gradient(135deg, #c395f1 0%, #8224e3 75%);
+      a {
+        color: white !important;
       }
     }
   }

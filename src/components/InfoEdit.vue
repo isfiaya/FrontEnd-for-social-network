@@ -169,9 +169,19 @@ nav {
     display: flex;
     padding-left: 0;
     li {
+      margin-right: 20px;
+      width: 40px;
+      padding-bottom: 3px;
+      text-align: center;
+      a {
+        color: #212529;
+      }
+      a:hover {
+        text-decoration: none;
+      }
+    }
+    li:nth-child(2) {
       border-bottom: 2px solid #8224e3;
-      padding: 5px;
-      padding-right: 30px;
       a {
         color: #8224e3;
       }
@@ -229,6 +239,9 @@ h2 {
   border-radius: 30px;
   text-align: center;
   padding: 0.475rem 1rem;
+}
+.btn-save-change:hover {
+  background-image: none;
 }
 .btn-delete-account {
   background-color: #d63031;

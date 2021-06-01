@@ -6,10 +6,16 @@
       <p>Socail Network</p>
       <div class="card">
         <div class="info">
-          <img src="@/assets/user.png" alt="profile" v-if="!img" />
-          <img :src="img" alt="profile" v-if="img" />
-          <p>{{first_name + ` ` + last_name}}</p>
-          <p>Member</p>
+          <router-link :to="{
+            name:'profile',
+            params:{id:id} 
+          }">
+            <img src="@/assets/user.png" alt="profile" v-if="!img" />
+            <img :src="img" alt="profile" v-if="img" />
+            <p>{{first_name + ` ` + last_name}}</p>
+          </router-link>
+
+          <p class="member">Member</p>
         </div>
         <div class="connection">
           <ul>
@@ -67,6 +73,7 @@ export default {
       first_name: "",
       last_name: "",
       img: null,
+      id: localStorage.getItem("id"),
     };
   },
   methods: {
@@ -101,7 +108,6 @@ export default {
   background-color: #f8f9fb;
 }
 .style::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   background: transparent;
 }
@@ -111,7 +117,6 @@ export default {
 }
 .style::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #555;
 }
 .header {
@@ -181,12 +186,7 @@ export default {
     padding: 2px;
     border: 2px solid #eee;
   }
-  p {
-    color: black;
-  }
-  p:nth-child(3) {
-    opacity: 50%;
-  }
+
   .connection {
     margin-top: 20px;
     padding-top: 20px;
@@ -204,6 +204,26 @@ export default {
         }
       }
     }
+  }
+  .info {
+    a {
+      p {
+        color: black;
+      }
+    }
+    a:hover {
+      text-decoration: none;
+    }
+    a:active {
+      transform: translateY(2px);
+    }
+    .member {
+      color: black;
+      opacity: 50%;
+    }
+  }
+  .info:active {
+    transform: translateY(2px);
   }
 }
 .card::before {
