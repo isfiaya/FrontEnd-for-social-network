@@ -6,22 +6,24 @@
     </div>
     <div class="icons">
       <ul>
-        <li>
+        <!-- <li>
           <i class="fas fa-user-plus"></i>
-        </li>
-        <li>
+        </li>-->
+        <!-- <li>
           <i class="fas fa-bell"></i>
-        </li>
-        <li @click="logout">
+        </li>-->
+        <li @click="logout" class="logout">
           <i class="fas fa-sign-out-alt"></i>
+          <span class="tooltiptext">Log Out</span>
         </li>
-        <li class="badge">
+        <li class="badgeProfile">
           <router-link :to="{
             name:'profile',
             params:{id:id} 
-          }">
+          }" class="linkBadge">
             <img src="@/assets/user.png" alt="imgProfile" v-if="!img" />
             <img :src="img" alt="imgProfile" v-if="img" />
+            <span class="tooltiptext">Profile</span>
           </router-link>
         </li>
       </ul>
@@ -123,13 +125,51 @@ nav {
     text-decoration: none;
   }
 }
-.badge {
+.badgeProfile {
   img {
     width: 40px;
     border-radius: 50%;
   }
 }
-.badge:active {
+.linkBadge {
+  position: relative;
+}
+.linkBadge:hover {
+  .tooltiptext {
+    visibility: visible;
+  }
+}
+.badgeProfile:active {
   transform: translateY(2px);
+}
+.logout {
+  position: relative;
+  i {
+    border: #dfdfdf solid 1px;
+    padding: 5px;
+    border-radius: 15px;
+    background-color: #f1f2f4;
+  }
+}
+.tooltiptext {
+  visibility: hidden;
+  width: 80px;
+  background-color: black;
+  color: #fff;
+  font-size: 12px !important;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 50%;
+  margin-left: -40px;
+  margin-top: 15px;
+}
+.logout:hover {
+  .tooltiptext {
+    visibility: visible;
+  }
 }
 </style>

@@ -8,6 +8,7 @@
         <li>
           <label class="btn-camera">
             <i class="fa fa-camera"></i>
+            <span class="tooltiptext">Upload photo</span>
             <span>
               <input type="file" id="file" ref="file" @change="onFileChange" @click="resetFileUploader" />
             </span>
@@ -145,6 +146,9 @@ export default {
     .btn-post:active {
       transform: translateY(2px);
     }
+    .btn-post:hover {
+      background-image: none;
+    }
     ul {
       display: flex;
       justify-content: space-between;
@@ -190,5 +194,26 @@ export default {
   width: 50%;
   max-width: 300px;
   height: auto;
+}
+.tooltiptext {
+  visibility: hidden;
+  width: 100px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  font-size: 12px !important;
+  z-index: 1;
+  top: 100%;
+  left: 50%;
+  margin-left: -50px;
+  margin-top: 15px;
+}
+.btn-camera:hover {
+  .tooltiptext {
+    visibility: visible;
+  }
 }
 </style>

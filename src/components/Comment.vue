@@ -17,7 +17,10 @@
     <div class="inputComment" :class="{boxShadow:edit}">
       <span class="inputComment-Comment" v-if="!edit">{{message}}</span>
       <input type="text" class="inputComment-Comment" v-model="message" v-if="edit" ref="comment" />
-      <i class="fas fa-paper-plane icon-send-edit" v-if="edit" @click="sendUpdatedComment"></i>
+      <div class="iconSend">
+        <i class="fas fa-paper-plane icon-send-edit" v-if="edit" @click="sendUpdatedComment"></i>
+        <span class="tooltiptext">Update Comment</span>
+      </div>
     </div>
     <div class="tools" v-if="userCommentId">
       <button class="mr-3" @click="showEditComment">Edit</button>
@@ -133,6 +136,7 @@ export default {
     border-radius: 20px;
     padding: 10px;
     margin-left: 40px;
+
     input {
       outline: none;
       width: 90%;
@@ -195,5 +199,30 @@ export default {
 }
 .boxShadow {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.iconSend {
+  position: relative;
+  float: right;
+}
+.tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  font-size: 12px !important;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 50%;
+  margin-left: -60px;
+  margin-top: 15px;
+}
+.iconSend:hover {
+  .tooltiptext {
+    visibility: visible;
+  }
 }
 </style>
