@@ -18,7 +18,7 @@
           <button class="btn pull-right btn-post" type="reset" @click="removeImage">Remove image</button>
         </li>
         <li>
-          <button class="btn pull-right btn-post" type="submit" @click="submitPost">Post</button>
+          <button class="btn pull-right btn-post" type="submit" @click="submitPost" :disabled="!message && !file">Post</button>
         </li>
       </ul>
     </footer>
