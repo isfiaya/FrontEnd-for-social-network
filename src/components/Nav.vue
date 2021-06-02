@@ -2,7 +2,11 @@
   <nav>
     <div class="search">
       <i class="fas fa-search"></i>
-      <input type="text" placeholder="Search..." />
+      <input type="text" placeholder="Search..." v-model="search" />
+    </div>
+    <div class="resultSearch" v-if="users">
+      <p v-if="notUsers">not match any username</p>
+      <p v-for="user in users" :key="user.id">{{user.first_name + ' ' + user.last_name}}</p>
     </div>
     <div class="icons">
       <ul>
@@ -38,8 +42,11 @@ export default {
   name: "Navbar",
   data() {
     return {
+      search: null,
       id: localStorage.getItem("id"),
       img: null,
+      users: null,
+      notUsers: false,
     };
   },
   components: {},
@@ -65,6 +72,33 @@ export default {
         this.img = dataFilter[0].imageUser;
       });
     },
+    searchUsers() {
+      const words = this.search;
+      if (words.length) {
+        axios
+          .post("http://localhost:3000/home/users/search", {
+            words: words,
+          })
+          .then((response) => {
+            console.log(response.data);
+            const data = response.data;
+            this.users = data;
+            if (this.users.length) {
+              this.notUsers = false;
+            } else {
+              this.notUsers = true;
+            }
+          });
+      }
+      if (!words) {
+        this.users = null;
+      }
+    },
+  },
+  watch: {
+    search: function () {
+      this.searchUsers();
+    },
   },
   created() {
     this.getOneUser();
@@ -87,6 +121,7 @@ nav {
 .search {
   height: 28px;
   width: 40%;
+  position: relative;
   i {
     font-size: 1rem;
     opacity: 60%;
@@ -103,6 +138,18 @@ nav {
     height: 100%;
     outline: none;
     width: 85%;
+  }
+}
+.resultSearch {
+  position: absolute;
+  background-color: #eee;
+  width: 40%;
+  top: 100%;
+  left: 20px;
+  padding: 5px;
+  p {
+    padding: 0px 0 0 10px;
+    margin-bottom: 0;
   }
 }
 .icons {
