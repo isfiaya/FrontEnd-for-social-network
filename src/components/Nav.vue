@@ -6,7 +6,7 @@
     </div>
     <div class="resultSearch" v-if="users">
       <p v-if="notUsers">not match any username</p>
-      <p v-for="user in users" :key="user.id">{{user.first_name + ' ' + user.last_name}}</p>
+      <router-link v-for="user in users" :to="{name:'profile',params:{id:user.id}}" :key="user.id">{{user.first_name + ' ' + user.last_name}}</router-link>
     </div>
     <div class="icons">
       <ul>
@@ -142,14 +142,27 @@ nav {
 }
 .resultSearch {
   position: absolute;
-  background-color: #eee;
-  width: 40%;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  width: 30%;
   top: 100%;
   left: 20px;
   padding: 5px;
   p {
-    padding: 0px 0 0 10px;
     margin-bottom: 0;
+    padding: 5px 0 5px 10px;
+  }
+  a {
+    display: block;
+    color: black;
+    padding: 5px 0 5px 10px;
+    margin: 10px 0;
+  }
+  a:hover {
+    background-color: #eee;
+    text-decoration: none;
   }
 }
 .icons {
