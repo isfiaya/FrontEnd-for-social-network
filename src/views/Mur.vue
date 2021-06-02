@@ -3,9 +3,9 @@
     <div class="asideLeft">
       <SideLeft ref="sideLeft" />
     </div>
-    <div class="main">
+    <div class="main" @click="hiddenBoxSearch">
       <nav class="fixed-top">
-        <Nav />
+        <Nav ref="nav" />
       </nav>
       <div class="row d-flex">
         <div class="col-lg-8 main-post">
@@ -52,6 +52,10 @@ export default {
         const data = response.data;
         this.posts = data;
       });
+    },
+    hiddenBoxSearch() {
+      this.$refs.nav.users = null;
+      this.$refs.nav.search = "";
     },
   },
   watch: {
