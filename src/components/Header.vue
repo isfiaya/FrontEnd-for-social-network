@@ -1,8 +1,8 @@
 <template>
   <div class="wrap">
     <div class="cover">
-      <img src="@/assets/DefaultCover.jpg" alt="cover image profile" v-if="!coverImg" />
-      <img :src="coverImg" alt="cover image profile" v-if="coverImg" />
+      <img src="@/assets/DefaultCover.jpg" alt="cover-image-profile" v-if="!coverImg" />
+      <img :src="coverImg" alt="cover-image-profile" v-if="coverImg" />
 
       <div class="icons-cover" v-if="userID == paramsID">
         <label class="remove-cover" v-if="coverImg" @click="deleteCoverImage">
@@ -49,12 +49,12 @@
           <router-link class="boxTab" :to="{
             name:'profile',
             params:{id:idUserProfile}
-          }">
+          }" exact-active-class="IS-ACTIVATED">
             <i class="fas fa-user pb-1"></i>Posts
           </router-link>
         </li>
         <li>
-          <router-link to="info">
+          <router-link to="info" exact-active-class="IS-ACTIVATED">
             <i class="fas fa-info pb-1"></i>About
           </router-link>
         </li>
@@ -200,10 +200,17 @@ export default {
     border-bottom: none;
   }
 }
+.IS-ACTIVATED {
+  box-shadow: 0 10px 20px -8px rgb(58 46 68 / 70%);
+  background: linear-gradient(135deg, #c395f1 0%, #8224e3 75%);
+  border-radius: 10px;
+  color: white !important;
+}
 .cover {
   width: 100%;
   height: 70%;
   position: relative;
+
   img {
     width: 100%;
     height: 100%;
@@ -239,6 +246,7 @@ export default {
   overflow: hidden;
   padding: 1px;
   position: relative;
+  cursor: pointer;
   img {
     border-radius: 12px;
     width: 100%;
@@ -283,14 +291,6 @@ export default {
     }
     li:hover {
       background-color: #eee;
-      border-radius: 12px;
-    }
-    li:nth-child(2) {
-      box-shadow: 0 10px 20px -8px rgb(58 46 68 / 70%);
-      background: linear-gradient(135deg, #c395f1 0%, #8224e3 75%);
-      a {
-        color: white !important;
-      }
     }
   }
   @media (max-width: 768px) {

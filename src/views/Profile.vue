@@ -9,7 +9,7 @@
       </aside>
 
       <header>
-        <Header />
+        <Header ref="header" />
       </header>
     </div>
 
@@ -65,6 +65,12 @@ export default {
             this.lastName = response.data[0].last_name;
           }
         });
+    },
+  },
+  watch: {
+    "$route.params.id": function () {
+      this.getUserPost();
+      this.$refs.header.getOneUser();
     },
   },
   created() {
