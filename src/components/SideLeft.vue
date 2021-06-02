@@ -23,10 +23,10 @@
               {{numberPost}}
               <span>Posts</span>
             </li>
-            <li>
+            <!-- <li>
               4
               <span>Groups</span>
-            </li>
+            </li>-->
           </ul>
         </div>
       </div>
@@ -128,7 +128,8 @@ export default {
 }
 .style::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background-color: #555;
+  background-color: rgb(209, 203, 203);
+  visibility: visible;
 }
 .header {
   background-color: #383a45;

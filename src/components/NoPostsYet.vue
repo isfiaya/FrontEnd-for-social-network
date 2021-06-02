@@ -1,5 +1,5 @@
 <template>
-  <div class="no-post-yet" v-if="!posts">
+  <div class="no-post-yet">
     <i class="far fa-sad-cry"></i>
     <h2>hmm.../ {{firstName + ' ' + lastName}} hasn't posted anything</h2>
   </div>
