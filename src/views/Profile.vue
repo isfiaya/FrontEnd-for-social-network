@@ -15,8 +15,10 @@
 
     <main class="row">
       <div class="col-md-8 cards">
-        <router-view name="Panel"></router-view>
+        <router-view name="Panel" v-if="paramsId == userId"></router-view>
+        <router-view name="NoPostsYet" v-if="!posts"></router-view>
         <router-view name="Card" v-for="post in posts" :desc="post.message" :img="post.image" :firstName="post.first_name" :lastName="post.last_name" :postId="post.id" :createAt="post.createAt" :userId="post.userId" :key="post.id"></router-view>
+
         <router-view name="InfoUser"></router-view>
         <router-view name="InfoEdit"></router-view>
       </div>
@@ -61,8 +63,6 @@ export default {
           if (response.data.length > 0) {
             const data = response.data;
             this.posts = data;
-            this.firstName = response.data[0].first_name;
-            this.lastName = response.data[0].last_name;
           }
         });
     },

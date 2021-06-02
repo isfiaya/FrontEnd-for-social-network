@@ -8,6 +8,7 @@ import Card from '../components/Card.vue';
 import Panel from '../components/Panel.vue';
 import InfoUser from '../components/InfoUser.vue';
 import InfoEdit from '../components/InfoEdit.vue';
+import NoPostsYet from '../components/NoPostsYet.vue';
 
 Vue.use(VueRouter);
 
@@ -43,6 +44,7 @@ const routes = [
         name: 'profile',
         props: true,
         components: {
+          NoPostsYet,
           Panel,
           Card,
         }
