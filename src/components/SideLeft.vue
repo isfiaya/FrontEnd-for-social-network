@@ -20,8 +20,8 @@
         <div class="connection">
           <ul>
             <li>
-              1
-              <span>Friends</span>
+              {{numberPost}}
+              <span>Posts</span>
             </li>
             <li>
               4
@@ -74,6 +74,7 @@ export default {
       last_name: "",
       img: null,
       id: localStorage.getItem("id"),
+      numberPost: 0,
     };
   },
   methods: {
@@ -85,11 +86,21 @@ export default {
         this.img = dataFilter[0].imageUser;
       });
     },
+    fetchPost() {
+      const id = localStorage.getItem("id");
+      axios.get("http://localhost:3000/home").then((response) => {
+        console.log(response.data);
+        const data = response.data;
+        const dataFilter = data.filter((post) => post.userId == id);
+        this.numberPost = dataFilter.length;
+      });
+    },
   },
   created: function () {
     this.first_name = localStorage.getItem("first_name");
     this.last_name = localStorage.getItem("last_name");
     this.getOneUser();
+    this.fetchPost();
   },
 };
 </script>

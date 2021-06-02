@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="asideLeft">
-      <SideLeft class="side" />
+      <SideLeft ref="sideLeft" />
     </div>
     <div class="main">
       <nav class="fixed-top">
@@ -52,6 +52,11 @@ export default {
         const data = response.data;
         this.posts = data;
       });
+    },
+  },
+  watch: {
+    posts: function () {
+      this.$refs.sideLeft.fetchPost();
     },
   },
   created() {
