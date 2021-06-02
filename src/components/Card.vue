@@ -85,6 +85,7 @@ export default {
   data: () => ({
     isShowComments: false,
     isLike: false,
+
     userComment: null,
     numberLikes: null,
     numberComment: null,
@@ -108,10 +109,15 @@ export default {
           postId: this.postId,
         })
         .then((response) => {
-          console.log(response.data);
-
-          // this.numberLikes++;
-          this.fetchData();
+          console.log(response.data.like);
+          if (response.data.like) {
+            this.numberLikes++;
+            this.isLike = true;
+          }
+          if (!response.data.like) {
+            this.numberLikes--;
+            this.isLike = false;
+          }
         });
     },
     fetchData() {
@@ -132,6 +138,7 @@ export default {
         }
       });
     },
+
     timeSince() {
       const dateNow = Date.now();
       const dateCreated = Date.parse(this.createAt);
