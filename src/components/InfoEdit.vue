@@ -31,7 +31,7 @@
         <tr>
           <td class="label">Date of Birth</td>
           <td class="pl-4">
-            <input type="date" ref="date" v-model="dateBrith" />
+            <input type="date" ref="date" v-model="dateBrith" class="field-1" max="2018-12-31" />
           </td>
         </tr>
         <tr>
