@@ -425,7 +425,7 @@ export default {
 
     button {
       padding: 7px 20px 7px 20px;
-      border-radius: 20px;
+      border-radius: 30px;
       outline: none;
       background-color: #8224e3;
       background-image: linear-gradient(
