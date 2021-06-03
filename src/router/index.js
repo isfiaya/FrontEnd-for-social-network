@@ -58,7 +58,7 @@ const routes = [
         }
       },
       {
-        path: 'edit',
+        path: 'info/edit',
         name: 'edit',
         props: true,
         components: {

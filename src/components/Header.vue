@@ -54,7 +54,7 @@
           </router-link>
         </li>
         <li>
-          <router-link to="info" exact-active-class="IS-ACTIVATED">
+          <router-link to="info" active-class="IS-ACTIVATED">
             <i class="fas fa-info pb-1"></i>About
           </router-link>
         </li>

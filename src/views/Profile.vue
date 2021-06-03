@@ -2,7 +2,7 @@
   <div>
     <div class="row header">
       <nav>
-        <Nav />
+        <Nav ref="nav" />
       </nav>
       <aside>
         <ProfileSide />
@@ -13,7 +13,7 @@
       </header>
     </div>
 
-    <main class="row">
+    <main class="row" @click="hiddenBoxSearch">
       <div class="col-md-8 cards">
         <router-view name="Panel" v-if="paramsId == userId"></router-view>
         <router-view name="NoPostsYet" v-if="!posts"></router-view>
@@ -65,6 +65,11 @@ export default {
             this.posts = data;
           }
         });
+    },
+    hiddenBoxSearch() {
+      if (this.$refs.nav.search) {
+        return (this.$refs.nav.search = "");
+      }
     },
   },
   watch: {

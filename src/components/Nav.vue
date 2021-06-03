@@ -42,7 +42,7 @@ export default {
   name: "Navbar",
   data() {
     return {
-      search: null,
+      search: "",
       id: localStorage.getItem("id"),
       img: null,
       users: null,

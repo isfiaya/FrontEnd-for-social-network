@@ -3,11 +3,11 @@
     <div class="asideLeft">
       <SideLeft ref="sideLeft" />
     </div>
-    <div class="main" @click="hiddenBoxSearch">
+    <div class="main">
       <nav class="fixed-top">
         <Nav ref="nav" />
       </nav>
-      <div class="row d-flex">
+      <div class="row d-flex" @click="hiddenBoxSearch">
         <div class="col-lg-8 main-post">
           <Panel></Panel>
           <!-- Post /////-->
@@ -54,7 +54,6 @@ export default {
       });
     },
     hiddenBoxSearch() {
-      this.$refs.nav.users = null;
       this.$refs.nav.search = "";
     },
   },
