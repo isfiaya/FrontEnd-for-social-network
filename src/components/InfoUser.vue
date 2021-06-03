@@ -6,7 +6,7 @@
           <router-link to="info">View</router-link>
         </li>
         <li>
-          <router-link to="info/edit" v-if="idParam == idUser">Edit</router-link>
+          <router-link to="edit" v-if="idParam == idUser">Edit</router-link>
         </li>
       </ul>
     </nav>

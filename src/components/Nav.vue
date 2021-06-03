@@ -60,8 +60,8 @@ export default {
       Swal.fire({
         text: "disconnected !",
         icon: "success",
-        timer: 1500,
-        timerProgressBar: true,
+        showConfirmButton: false,
+        timer: 1000,
       });
     },
     getOneUser() {

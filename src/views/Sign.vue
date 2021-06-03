@@ -15,13 +15,7 @@
                   <i class="fas fa-user"></i>
                 </span>
               </div>
-              <input
-                type="text"
-                v-model.trim="$v.first_name.$model"
-                class="form-control input_user"
-                placeholder="First Name"
-                :class="{ 'is-invalid': $v.first_name.$error }"
-              />
+              <input type="text" v-model.trim="$v.first_name.$model" class="form-control input_user" placeholder="First Name" :class="{ 'is-invalid': $v.first_name.$error }" />
             </div>
             <div class="input-group mb-3">
               <div class="input-group-append">
@@ -29,13 +23,7 @@
                   <i class="fas fa-user"></i>
                 </span>
               </div>
-              <input
-                type="text"
-                v-model.trim="$v.last_name.$model"
-                class="form-control input_user"
-                placeholder="Last Name"
-                :class="{ 'is-invalid': $v.last_name.$error }"
-              />
+              <input type="text" v-model.trim="$v.last_name.$model" class="form-control input_user" placeholder="Last Name" :class="{ 'is-invalid': $v.last_name.$error }" />
             </div>
             <div class="input-group mb-3">
               <div class="input-group-append">
@@ -43,13 +31,7 @@
                   <i class="fas fa-at"></i>
                 </span>
               </div>
-              <input
-                type="email"
-                v-model.trim="$v.email.$model"
-                class="form-control input_user"
-                placeholder="Email"
-                :class="{ 'is-invalid': $v.email.$error }"
-              />
+              <input type="email" v-model.lazy="$v.email.$model" class="form-control input_user" placeholder="Email" :class="{ 'is-invalid': $v.email.$error }" />
             </div>
             <div class="input-group mb-2">
               <div class="input-group-append">
@@ -57,13 +39,7 @@
                   <i class="fas fa-key"></i>
                 </span>
               </div>
-              <input
-                type="password"
-                v-model.trim="$v.password.$model"
-                class="form-control input_pass"
-                placeholder="Password"
-                :class="{ 'is-invalid': $v.password.$error }"
-              />
+              <input type="password" v-model.trim="$v.password.$model" class="form-control input_pass" placeholder="Password" :class="{ 'is-invalid': $v.password.$error }" />
             </div>
             <div class="d-flex justify-content-center mt-3 login_container">
               <button type="submit" name="button" class="btn login_btn" @click="submit">Sign Up</button>

@@ -15,13 +15,7 @@
                   <i class="fas fa-user"></i>
                 </span>
               </div>
-              <input
-                type="email"
-                v-model.trim="$v.email.$model"
-                class="form-control input_user"
-                placeholder="Email"
-                :class="{ 'is-invalid': $v.email.$error }"
-              />
+              <input type="email" v-model.lazy="$v.email.$model" class="form-control input_user" placeholder="Email" :class="{ 'is-invalid': $v.email.$error }" />
             </div>
             <div class="input-group mb-2">
               <div class="input-group-append">
@@ -29,20 +23,14 @@
                   <i class="fas fa-key"></i>
                 </span>
               </div>
-              <input
-                type="password"
-                v-model.trim="$v.password.$model"
-                class="form-control input_pass"
-                placeholder="Password"
-                :class="{ 'is-invalid': $v.password.$error }"
-              />
+              <input type="password" v-model.trim="$v.password.$model" class="form-control input_pass" placeholder="Password" :class="{ 'is-invalid': $v.password.$error }" />
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
               <div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" id="customControlInline" />
                 <label class="custom-control-label" for="customControlInline">Remember me</label>
               </div>
-            </div>
+            </div>-->
             <div class="d-flex justify-content-center mt-3 login_container">
               <button type="submit" name="button" class="btn login_btn" @click="submit">
                 <router-link to="/login">Login</router-link>
@@ -56,9 +44,9 @@
             Don't have an account?
             <router-link to="/signup" class="ml-2">Sign Up</router-link>
           </div>
-          <div class="d-flex justify-content-center links">
+          <!-- <div class="d-flex justify-content-center links">
             <a href="#">Forgot your password?</a>
-          </div>
+          </div>-->
         </div>
       </div>
     </div>
