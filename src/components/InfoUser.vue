@@ -110,9 +110,9 @@ nav {
       }
     }
     li:nth-child(1) {
-      border-bottom: 2px solid #8224e3;
+      border-bottom: 2px solid $Secondary-Color;
       a {
-        color: #8224e3;
+        color: $Primary-Color;
       }
     }
   }
@@ -123,7 +123,7 @@ nav {
   padding-left: 1rem;
 }
 .customColor {
-  color: #8224e3;
+  color: $Secondary-Color;
 }
 h2 {
   font-size: 1.616em;

@@ -126,28 +126,26 @@ export default {
     border-top: 1px solid #e7ebee;
     .btn-post {
       height: 30px;
-      background-color: #8224e3;
-      background-image: linear-gradient(
-        90deg,
-        #8224e3 0,
-        #a968ec 50%,
-        #8224e3 100%
-      );
-      box-shadow: 0 1px 2px 0 rgb(130 36 227 / 50%);
+      // background-color: $Primary-Color;
+      background: $Primary-Color;
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
       background-size: 200%;
-      border: none;
+      border: none !important;
       cursor: pointer;
       border-radius: 30px;
       line-height: 0.3;
       text-align: center;
       padding: 0.375rem 2rem;
+      outline: none !important;
       color: #fff;
     }
     .btn-post:active {
       transform: translateY(2px);
+      border: none !important;
+      outline: none !important;
     }
     .btn-post:hover {
-      background-image: none;
+      // background-color: $Secondary-Color;
     }
     ul {
       display: flex;

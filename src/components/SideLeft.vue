@@ -2,8 +2,8 @@
   <div class="wrap style">
     <div class="header">
       <img src="@/assets/icon-1.png" class="logo-side" alt="logo" />
-      <p>Groupmonia</p>
-      <p>Socail Network</p>
+      <p>Groupomania</p>
+      <p>Social Network</p>
       <div class="card">
         <div class="info">
           <router-link :to="{

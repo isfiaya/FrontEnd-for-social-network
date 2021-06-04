@@ -99,7 +99,9 @@ export default {
           this.country = response.data[0].country;
           this.gender = response.data[0].gender;
           this.gender = response.data[0].gender;
-          this.dateBrith = response.data[0].dateBrith.split("T")[0];
+          if (response.data[0].dateBrith) {
+            this.dateBrith = response.data[0].dateBrith.split("T")[0];
+          }
         });
     },
     submitInfoUser() {
@@ -181,9 +183,9 @@ nav {
       }
     }
     li:nth-child(2) {
-      border-bottom: 2px solid #8224e3;
+      border-bottom: 2px solid $Secondary-Color;
       a {
-        color: #8224e3;
+        color: $Primary-Color;
       }
       a:hover {
         text-decoration: none;
@@ -196,7 +198,7 @@ nav {
   padding-top: 20px !important;
 }
 .customColor {
-  color: #8224e3;
+  color: $Secondary-Color;
 }
 h2 {
   font-size: 1.616em;
@@ -219,7 +221,7 @@ h2 {
   outline: none;
 }
 .field-1:focus {
-  border: 1px solid #8224e3;
+  border: 1px solid $Secondary-Color;
 }
 .submit {
   width: 100%;
@@ -227,13 +229,8 @@ h2 {
   margin-top: 40px;
 }
 .btn-save-change {
-  background-color: #8224e3;
-  background-image: linear-gradient(
-    90deg,
-    #8224e3 0,
-    #a968ec 50%,
-    #8224e3 100%
-  );
+  background-color: $Primary-Color;
+  background-image: $background;
   box-shadow: 0 1px 2px 0 rgb(130 36 227 / 50%);
   color: #fff;
   border-radius: 30px;

@@ -53,10 +53,9 @@ export default {
   border-radius: 12px;
   background: rgba(130, 36, 227, 0.02);
   background: linear-gradient(
-    135deg,
-    rgba(130, 36, 227, 0.04) 0%,
-    rgba(255, 255, 255, 0) 25%,
-    rgba(130, 36, 227, 0.07) 100%
+    138deg,
+    rgba(255, 118, 117, 0.5578606442577031) 47%,
+    rgba(214, 48, 49, 0.6671043417366946) 70%
   );
 
   padding: 10px 0px 20px 15px;
@@ -68,7 +67,7 @@ export default {
     content: "";
     position: absolute;
     width: 40px;
-    border: #8224e3 solid 1px;
+    border: $Secondary-Color solid 1px;
     bottom: -8px;
   }
 }

@@ -427,13 +427,7 @@ export default {
       padding: 7px 20px 7px 20px;
       border-radius: 30px;
       outline: none;
-      background-color: #8224e3;
-      background-image: linear-gradient(
-        90deg,
-        #8224e3 0,
-        #a968ec 50%,
-        #8224e3 100%
-      );
+      background: $Primary-Color;
       box-shadow: 0 1px 2px 0 rgb(130 36 227 / 50%);
       color: #fff;
     }

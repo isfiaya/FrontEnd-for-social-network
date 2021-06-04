@@ -202,7 +202,7 @@ export default {
 }
 .IS-ACTIVATED {
   box-shadow: 0 10px 20px -8px rgb(58 46 68 / 70%);
-  background: linear-gradient(135deg, #c395f1 0%, #8224e3 75%);
+  background: $background;
   border-radius: 10px;
   color: white !important;
 }

@@ -100,7 +100,15 @@ export default {
             password: this.password,
           })
           .then((response) => {
-            console.log(response);
+            console.log(response.data.email);
+            if (!response.data.email) {
+              return Swal.fire({
+                icon: "error",
+                title: "this email already exist !",
+                showConfirmButton: false,
+                timer: 2000,
+              });
+            }
             Swal.fire({
               icon: "success",
               title: "Registration successfully completed!",
@@ -108,16 +116,16 @@ export default {
               timer: 2000,
             });
             this.$router.replace({ name: "login" });
-          })
-          .catch((err) => {
-            console.log(err);
           });
-        this.submitStatus = "PENDING";
-        setTimeout(() => {
-          this.submitStatus = "OK";
-        }, 500);
+        // .catch((err) => {
+        //   console.log(err);
+        // });
+        // this.submitStatus = "PENDING";
+        // setTimeout(() => {
+        //   this.submitStatus = "OK";
+        // }, 500);
         this.$v.$reset();
-        this.resetData();
+        // this.resetData();
       }
     },
   },
@@ -171,26 +179,26 @@ export default {
 }
 .login_btn {
   width: 80%;
-  background: #c0392b !important;
+  background: $background;
   color: #fff;
 }
 .login_btn:focus {
-  box-shadow: none !important;
-  outline: 0px !important;
+  box-shadow: none;
+  outline: 0px;
 }
 .login_container {
   padding: 0 2rem;
 }
 .input-group-text {
-  background: #c0392b !important;
-  color: white !important;
-  border: 0 !important;
-  border-radius: 0.25rem 0 0 0.25rem !important;
+  background: $Primary-Color;
+  color: white;
+  border: 0;
+  border-radius: 0.25rem 0 0 0.25rem;
 }
 .input_user,
 .input_pass:focus {
-  box-shadow: none !important;
-  outline: 0px !important;
+  box-shadow: none;
+  outline: 0px;
 }
 .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
   background-color: #c0392b !important;

@@ -101,12 +101,12 @@ export default {
               text: "email or password is incorrect!",
             });
           });
-        this.submitStatus = "PENDING";
-        setTimeout(() => {
-          this.submitStatus = "OK";
-        }, 500);
+        // this.submitStatus = "PENDING";
+        // setTimeout(() => {
+        //   this.submitStatus = "OK";
+        // }, 500);
         this.$v.$reset();
-        this.resetData();
+        // this.resetData();
       }
     },
   },
@@ -161,7 +161,7 @@ export default {
 }
 .login_btn {
   width: 80%;
-  background: #c0392b !important;
+  background: $background;
   a {
     color: white !important;
     text-decoration: none;
@@ -175,15 +175,15 @@ export default {
   padding: 0 2rem;
 }
 .input-group-text {
-  background: #c0392b !important;
-  color: white !important;
-  border: 0 !important;
-  border-radius: 0.25rem 0 0 0.25rem !important;
+  background: $Primary-Color;
+  color: white;
+  border: 0;
+  border-radius: 0.25rem 0 0 0.25rem;
 }
 .input_user,
 .input_pass:focus {
-  box-shadow: none !important;
-  outline: 0px !important;
+  box-shadow: none;
+  outline: 0px;
 }
 
 .custom-control-label::after {

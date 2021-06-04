@@ -50,7 +50,7 @@ export default {
   margin-bottom: 20px;
   i {
     font-size: 45px;
-    color: #9240e6;
+    color: $Secondary-Color;
   }
   h2 {
     margin-top: 15px;
