@@ -81,9 +81,12 @@ export default {
     getOneUser() {
       const userId = localStorage.getItem("id");
       axios.get("http://localhost:3000/home/users").then((response) => {
-        const data = response.data;
-        const dataFilter = data.filter((user) => user.id == parseInt(userId));
-        this.img = dataFilter[0].imageUser;
+        console.log(response);
+        if (response.data) {
+          const data = response.data;
+          const dataFilter = data.filter((user) => user.id == parseInt(userId));
+          this.img = dataFilter[0].imageUser;
+        }
       });
     },
     fetchPost() {

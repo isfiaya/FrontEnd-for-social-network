@@ -49,6 +49,10 @@ export default {
   methods: {
     fetchAllPost() {
       axios.get("http://localhost:3000/home").then((response) => {
+        const token = response.data.token;
+        if (token === false) {
+          // this.$router.replace("/login");
+        }
         const data = response.data;
         this.posts = data;
       });

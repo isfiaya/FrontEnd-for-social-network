@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="avatar">
-      <div class="profile-img" @click="box=true">
+      <div class="profile-img" @click="showBox">
         <img src="@/assets/user.png" alt="profile" v-if="!img" />
         <img :src="img" alt="profile image" v-if="img" />
       </div>
@@ -99,12 +99,12 @@ export default {
       this.coverImg = URL.createObjectURL(files[0]);
       this.setCoverImage();
     },
-    async setImageProfile() {
+    setImageProfile() {
       const id = localStorage.getItem("id");
       const formData = new FormData();
       formData.append("image", this.file);
       formData.append("id", id);
-      await axios
+      axios
         .post("http://localhost:3000/home/users/images", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
@@ -178,15 +178,15 @@ export default {
           this.coverImg = null;
         });
     },
-    // checkPathName() {
-    //   if (this.$route.name == "profile") {
-    //     return (this.namePath = true);
-    //   }
-    // },
+    showBox() {
+      const userID = localStorage.getItem("id");
+      if (userID == this.$route.params.id) {
+        this.box = true;
+      }
+    },
   },
   created() {
     this.getOneUser();
-    // this.checkPathName();
   },
 };
 </script>

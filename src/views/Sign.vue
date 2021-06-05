@@ -100,7 +100,7 @@ export default {
             password: this.password,
           })
           .then((response) => {
-            console.log(response.data.email);
+            console.log(response);
             if (!response.data.email) {
               return Swal.fire({
                 icon: "error",

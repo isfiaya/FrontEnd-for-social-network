@@ -60,6 +60,10 @@ export default {
           id: id,
         })
         .then((response) => {
+          const token = response.data.token;
+          if (token === false) {
+            this.$router.replace("/login");
+          }
           if (response.data.length > 0) {
             const data = response.data;
             this.posts = data;
