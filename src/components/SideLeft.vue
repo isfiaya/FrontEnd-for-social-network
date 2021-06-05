@@ -81,7 +81,6 @@ export default {
     getOneUser() {
       const userId = localStorage.getItem("id");
       axios.get("http://localhost:3000/home/users").then((response) => {
-        console.log(response);
         if (response.data) {
           const data = response.data;
           const dataFilter = data.filter((user) => user.id == parseInt(userId));
@@ -92,7 +91,6 @@ export default {
     fetchPost() {
       const id = localStorage.getItem("id");
       axios.get("http://localhost:3000/home").then((response) => {
-        console.log(response.data);
         const data = response.data;
         const dataFilter = data.filter((post) => post.userId == id);
         this.numberPost = dataFilter.length;

@@ -54,7 +54,6 @@ export default {
   methods: {
     getUserPost() {
       const id = this.$route.params.id;
-      console.log(id);
       axios
         .post("http://localhost:3000/home/profile", {
           id: id,

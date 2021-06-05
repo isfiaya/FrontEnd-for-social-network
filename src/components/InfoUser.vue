@@ -60,13 +60,12 @@ export default {
   methods: {
     async getUserData() {
       const id = this.$route.params.id;
-      console.log(id);
+
       await axios
         .post("http://localhost:3000/home/users", {
           id: id,
         })
         .then((response) => {
-          console.log(response.data);
           this.firstName = response.data[0].first_name;
           this.lastName = response.data[0].last_name;
           this.gender = response.data[0].gender;

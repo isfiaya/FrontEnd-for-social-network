@@ -138,13 +138,11 @@ export default {
     getOneUser() {
       const id = this.$route.params.id;
       this.idUserProfile = id;
-      // console.log(id);
       axios
         .post("http://localhost:3000/home/users", {
           id: id,
         })
         .then((response) => {
-          console.log(response.data[0]);
           const data = response.data[0];
           this.firstName = data.first_name;
           this.lastName = data.last_name;

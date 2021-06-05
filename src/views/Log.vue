@@ -86,7 +86,6 @@ export default {
             password: this.password,
           })
           .then((response) => {
-            console.log(response);
             localStorage.setItem("first_name", response.data.first_name);
             localStorage.setItem("last_name", response.data.last_name);
             localStorage.setItem("email", response.data.email);

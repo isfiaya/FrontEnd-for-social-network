@@ -58,7 +58,9 @@ export default {
       });
     },
     hiddenBoxSearch() {
-      this.$refs.nav.search = "";
+      if (this.$refs.nav.search) {
+        this.$refs.nav.search = "";
+      }
     },
   },
   watch: {

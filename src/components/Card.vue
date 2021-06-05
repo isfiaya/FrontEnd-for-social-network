@@ -109,7 +109,6 @@ export default {
           postId: this.postId,
         })
         .then((response) => {
-          console.log(response.data.like);
           if (response.data.like) {
             this.numberLikes++;
             this.isLike = true;

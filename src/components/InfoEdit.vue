@@ -86,13 +86,12 @@ export default {
   methods: {
     getUserData() {
       const id = this.$route.params.id;
-      console.log(id);
+
       axios
         .post("http://localhost:3000/home/users", {
           id: id,
         })
         .then((response) => {
-          console.log(response.data);
           this.firstName = response.data[0].first_name;
           this.lastName = response.data[0].last_name;
           this.city = response.data[0].city;
