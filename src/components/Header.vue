@@ -49,12 +49,12 @@
           <router-link class="boxTab" :to="{
             name:'profile',
             params:{id:idUserProfile}
-          }" exact-active-class="IS-ACTIVATED">
+          }" exact>
             <i class="fas fa-user pb-1"></i>Posts
           </router-link>
         </li>
         <li>
-          <router-link :to="{name:'about'}" exactActiveClass="IS-ACTIVATED">
+          <router-link :to="{name:'about'}">
             <i class="fas fa-info pb-1"></i>About
           </router-link>
         </li>
@@ -198,7 +198,7 @@ export default {
     border-bottom: none;
   }
 }
-.IS-ACTIVATED {
+.router-link-active {
   box-shadow: 0 10px 20px -8px rgb(58 46 68 / 70%);
   background: $background;
   border-radius: 10px;
