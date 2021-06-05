@@ -50,16 +50,16 @@ const routes = [
         }
       },
       {
-        path: 'info',
-        name: 'info',
+        path: 'about',
+        name: 'about',
         props: true,
         components: {
           InfoUser
         }
       },
       {
-        path: 'edit',
-        name: 'edit',
+        path: 'about/edit',
+        name: 'about',
         props: true,
         components: {
           InfoEdit

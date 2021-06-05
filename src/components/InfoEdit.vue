@@ -3,7 +3,7 @@
     <nav>
       <ul>
         <li>
-          <router-link to="info">View</router-link>
+          <router-link to="../about">View</router-link>
         </li>
         <li>
           <router-link to="edit">Edit</router-link>
