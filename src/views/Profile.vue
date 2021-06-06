@@ -17,7 +17,7 @@
       <div class="col-md-8 cards">
         <router-view name="Panel" v-if="paramsId == userId"></router-view>
         <router-view name="NoPostsYet" v-if="!posts"></router-view>
-        <router-view name="Card" v-for="post in posts" :desc="post.message" :img="post.image" :firstName="post.first_name" :lastName="post.last_name" :postId="post.id" :createAt="post.createAt" :userId="post.userId" :key="post.id"></router-view>
+        <router-view ref="card" name="Card" v-for="post in posts" :desc="post.message" :img="post.image" :firstName="post.first_name" :lastName="post.last_name" :postId="post.id" :createAt="post.createAt" :userId="post.userId" :key="post.id"></router-view>
 
         <router-view name="InfoUser"></router-view>
         <router-view name="InfoEdit"></router-view>
@@ -30,7 +30,7 @@
 import Nav from "../components/Nav";
 import ProfileSide from "../components/ProfileSide";
 import Header from "../components/Header";
-// import Card from "../components/Card";
+
 // import Panel from "../components/Panel";
 import axios from "axios";
 export default {
@@ -59,9 +59,13 @@ export default {
           id: id,
         })
         .then((response) => {
-          const token = response.data.token;
-          if (token === false) {
-            this.$router.replace("/login");
+          // console.log(response);
+          const jwt = localStorage.getItem("jwt");
+          if (!jwt) {
+            return this.$router.replace("/login");
+          }
+          if (!response.data.length) {
+            this.posts = null;
           }
           if (response.data.length > 0) {
             const data = response.data;
@@ -79,6 +83,9 @@ export default {
     "$route.params.id": function () {
       this.getUserPost();
       this.$refs.header.getOneUser();
+      this.paramsId = this.$route.params.id;
+
+      // this.$router.go();
     },
   },
   created() {

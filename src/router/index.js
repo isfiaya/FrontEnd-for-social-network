@@ -59,7 +59,7 @@ const routes = [
       },
       {
         path: 'about/edit',
-        name: 'about',
+        name: 'edit',
         props: true,
         components: {
           InfoEdit

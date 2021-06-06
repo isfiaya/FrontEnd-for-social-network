@@ -42,7 +42,7 @@
               <input type="password" v-model.trim="$v.password.$model" class="form-control input_pass" placeholder="Password" :class="{ 'is-invalid': $v.password.$error }" />
             </div>
             <div class="d-flex justify-content-center mt-3 login_container">
-              <button type="submit" name="button" class="btn login_btn" @click="submit">Sign Up</button>
+              <button type="submit" name="button" class="btn login_btn">Sign Up</button>
             </div>
           </form>
         </div>
@@ -100,7 +100,8 @@ export default {
             password: this.password,
           })
           .then((response) => {
-            if (!response.data.email) {
+            console.log(response);
+            if (response.data.email == false) {
               return Swal.fire({
                 icon: "error",
                 title: "this email already exist !",
