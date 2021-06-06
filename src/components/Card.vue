@@ -402,6 +402,9 @@ export default {
   align-items: center;
   .imgComment {
     width: 10%;
+    @media (max-width: 575px) {
+      display: none;
+    }
     img {
       max-width: 40px;
       border-radius: 50%;
