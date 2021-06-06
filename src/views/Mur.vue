@@ -50,6 +50,9 @@ export default {
     fetchAllPost() {
       axios.get("http://localhost:3000/home").then((response) => {
         // const token = response.data.token;
+        // if (token === false) {
+        //   return this.$router.replace("/login");
+        // }
         const jwt = localStorage.getItem("jwt");
         if (!jwt) {
           return this.$router.replace("/login");

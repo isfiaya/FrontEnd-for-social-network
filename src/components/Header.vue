@@ -11,7 +11,7 @@
         </label>
 
         <label class="btn-upload-cover">
-          <span class="tooltiptext">Add Cover Photo</span>
+          <span class="tooltiptext">Add Cover</span>
 
           <i class="fas fa-upload"></i>
           <span>
@@ -214,17 +214,22 @@ export default {
     height: 100%;
   }
   .remove-cover {
+    margin-bottom: 0;
+    width: 33px;
+    cursor: pointer;
     position: absolute;
     bottom: 15px;
-    right: 95px;
-    padding: 10px;
-    width: 45px;
-    height: 47px;
-    margin-bottom: 0;
-    cursor: pointer;
+    background-color: #eee;
+    height: 30px;
+    line-height: 30px;
     border-radius: 50%;
     text-align: center;
-    background-color: #eee;
+    right: 85px;
+
+    @media (max-width: 470px) {
+      right: 0;
+      left: 15px;
+    }
   }
   .remove-cover:active {
     transform: translateY(2px);
@@ -376,15 +381,19 @@ export default {
 }
 .btn-upload-cover {
   margin-bottom: 0;
-  width: 45px;
+  width: 33px;
   cursor: pointer;
   position: absolute;
   bottom: 15px;
   background-color: #eee;
-  padding: 10px;
+  // padding: 2px 3px 4px;
   border-radius: 50%;
   text-align: center;
-  right: 35px;
+  right: 40px;
+  height: 30px;
+  @media (max-width: 470px) {
+    right: 15px;
+  }
 
   span input {
     opacity: 0;
@@ -405,8 +414,12 @@ export default {
   z-index: 1;
   top: 100%;
   left: 50%;
+  line-height: initial;
   margin-left: -50px;
   margin-top: 15px;
+  @media (max-width: 500px) {
+    display: none;
+  }
 }
 .btn-upload-cover:hover {
   .tooltiptext {

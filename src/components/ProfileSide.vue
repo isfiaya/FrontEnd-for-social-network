@@ -53,7 +53,6 @@ export default {
   background-color: #f8f9fb;
 }
 .style::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   background: transparent;
 }
@@ -63,8 +62,7 @@ export default {
 }
 .style::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: #555;
+  background-color: rgb(209, 203, 203);
 }
 .header {
   background-color: #383a45;
