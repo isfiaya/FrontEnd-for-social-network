@@ -17,7 +17,19 @@
       <div class="col-md-8 cards">
         <router-view name="Panel" v-if="paramsId == userId"></router-view>
         <router-view name="NoPostsYet" v-if="!posts"></router-view>
-        <router-view ref="card" name="Card" v-for="post in posts" :desc="post.message" :img="post.image" :firstName="post.first_name" :lastName="post.last_name" :postId="post.id" :createAt="post.createAt" :userId="post.userId" :key="post.id"></router-view>
+        <router-view
+          :ref="'card' + index"
+          name="Card"
+          v-for="(post,index) in posts"
+          :desc="post.message"
+          :img="post.image"
+          :firstName="post.first_name"
+          :lastName="post.last_name"
+          :postId="post.id"
+          :createAt="post.createAt"
+          :userId="post.userId"
+          :key="post.id"
+        ></router-view>
 
         <router-view name="InfoUser"></router-view>
         <router-view name="InfoEdit"></router-view>
@@ -49,6 +61,7 @@ export default {
       paramsId: this.$route.params.id,
       userId: localStorage.getItem("id"),
       posts: null,
+      imgUserCard: null,
     };
   },
   methods: {
@@ -73,6 +86,7 @@ export default {
           }
         });
     },
+
     hiddenBoxSearch() {
       if (this.$refs.nav.search) {
         return (this.$refs.nav.search = "");
@@ -84,8 +98,6 @@ export default {
       this.getUserPost();
       this.$refs.header.getOneUser();
       this.paramsId = this.$route.params.id;
-
-      // this.$router.go();
     },
   },
   created() {

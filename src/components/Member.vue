@@ -13,7 +13,7 @@
         name:'profile',
         params:{id:userID}
       }">{{first_name + ' ' + last_name}}</router-link>
-      <p>2 hours ago</p>
+      <!-- <p>2 hours ago</p> -->
     </div>
   </div>
 </template>
@@ -28,6 +28,7 @@ export default {
 <style lang="scss" scoped>
 .member {
   display: flex;
+  align-items: center;
   margin-bottom: 10px;
   img {
     width: 40px;

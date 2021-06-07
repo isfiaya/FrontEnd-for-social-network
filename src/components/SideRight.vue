@@ -85,6 +85,10 @@ footer {
     li {
       font-size: 10px;
       opacity: 70%;
+      cursor: pointer;
+    }
+    li:hover {
+      opacity: 100%;
     }
   }
 }

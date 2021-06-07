@@ -132,7 +132,7 @@ export default {
     }
   }
   .inputComment {
-    background-color: #eee;
+    background-color: $backgroundComment;
     border-radius: 20px;
     padding: 10px;
     margin-left: 40px;

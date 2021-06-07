@@ -102,13 +102,20 @@ export default {
       list-style: none;
       padding-left: 0;
       li {
-        width: 50px;
+        width: 100px;
         margin-bottom: 50px;
+        border-radius: 7px;
         display: flex;
         flex-direction: column;
         opacity: 80%;
+        cursor: pointer;
+        padding-top: 3px;
+        padding-bottom: 3px;
+
         a {
           color: none !important;
+          display: flex;
+          flex-direction: column;
         }
         a:hover {
           text-decoration: none;
@@ -119,6 +126,9 @@ export default {
         i {
           margin-bottom: 10px;
         }
+      }
+      li:hover {
+        background-color: #eee;
       }
     }
   }

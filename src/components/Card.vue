@@ -317,7 +317,8 @@ export default {
     overflow: hidden;
     margin: 0;
     img {
-      max-width: 100%;
+      width: 45px;
+      height: 45px;
     }
   }
 }
@@ -394,7 +395,7 @@ export default {
   }
 }
 .likeBtn {
-  color: #a29bfe;
+  color: #4169e1;
 }
 
 .wrapComment {
@@ -415,11 +416,12 @@ export default {
     width: 70%;
     input {
       padding: 7px;
+      padding-left: 13px;
       width: 100%;
       border-radius: 30px;
       outline: none;
       border: 2px solid #e7edf2;
-      background-color: #eee;
+      background-color: $backgroundComment;
     }
   }
   .btnComment {

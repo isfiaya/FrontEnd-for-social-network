@@ -189,6 +189,7 @@ nav {
 .badgeProfile {
   img {
     width: 40px;
+    height: 41px;
     border-radius: 50%;
   }
 }

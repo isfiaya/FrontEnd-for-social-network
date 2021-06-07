@@ -167,16 +167,24 @@ export default {
       flex-wrap: wrap;
       list-style: none;
       padding-left: 0;
+      gap: 10px;
       li {
-        width: 150px;
+        width: 100px;
         max-width: 50%;
         margin-bottom: 50px;
         display: flex;
         flex-direction: column;
         opacity: 80%;
+        padding: 5px;
+        border-radius: 7px;
+
         i {
           margin-bottom: 10px;
         }
+      }
+      li:hover {
+        background-color: #eee;
+        cursor: pointer;
       }
     }
   }

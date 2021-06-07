@@ -80,7 +80,6 @@ export default {
       userID: localStorage.getItem("id"),
       idUserProfile: null,
       paramsID: this.$route.params.id,
-      namePath: null,
     };
   },
   methods: {
@@ -183,6 +182,14 @@ export default {
       }
     },
   },
+  watch: {
+    img: function () {
+      this.$parent.$refs.nav.getOneUser();
+      // this.$parent.$refs.card[0].getOneUser();
+      // console.log(this.$parent.$refs.card.length);
+    },
+  },
+
   created() {
     this.getOneUser();
   },
