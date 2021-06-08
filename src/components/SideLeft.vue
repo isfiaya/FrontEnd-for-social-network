@@ -177,6 +177,7 @@ export default {
         opacity: 80%;
         padding: 5px;
         border-radius: 7px;
+        cursor: pointer;
 
         i {
           margin-bottom: 10px;

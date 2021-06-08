@@ -5,6 +5,7 @@ import Vuelidate from 'vuelidate'
 import vuetify from './plugins/vuetify';
 import axios from 'axios';
 import 'animate.css';
+import store from './store'
 
 Vue.prototype.$http = axios;
 const token = localStorage.getItem('jwt')
@@ -18,6 +19,6 @@ new Vue({
   router,
   vuetify,
   axios,
-
+  store,
   render: h => h(App)
 }).$mount('#app')

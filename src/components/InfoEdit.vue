@@ -228,8 +228,8 @@ h2 {
   margin-top: 40px;
 }
 .btn-save-change {
-  background-color: $Primary-Color;
-  background-image: $background;
+  background-color: #051a38;
+  // background-image: $background;
   box-shadow: 0 1px 2px 0 rgb(130 36 227 / 50%);
   color: #fff;
   border-radius: 30px;
