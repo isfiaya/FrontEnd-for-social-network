@@ -184,7 +184,6 @@ export default {
       }
       li:hover {
         background-color: #eee;
-        cursor: pointer;
       }
     }
   }
@@ -202,7 +201,8 @@ export default {
   position: relative;
   img {
     border-radius: 50%;
-    height: auto;
+    width: 47px;
+    height: 47px;
     box-shadow: 0 7px 35px rgb(58 46 68 / 10%);
     padding: 2px;
     border: 2px solid #eee;
