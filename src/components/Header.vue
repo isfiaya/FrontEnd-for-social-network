@@ -65,6 +65,7 @@
 
 <script>
 import axios from "axios";
+import Swal from "sweetalert2";
 export default {
   name: "Header",
   data() {
@@ -113,6 +114,13 @@ export default {
           console.log(response);
           this.$root.$refs.card.getOneUser();
           this.$root.$refs.nav.getOneUser();
+          this.$router.go();
+          Swal.fire({
+            icon: "success",
+            title: "Your photo has been changed",
+            showConfirmButton: false,
+            timer: 1500,
+          });
         });
     },
     setCoverImage() {
@@ -162,8 +170,13 @@ export default {
         .then((response) => {
           console.log(response);
           this.img = null;
-          this.$root.$refs.card.getOneUser();
-          this.$root.$refs.nav.getOneUser();
+          this.$router.go();
+          Swal.fire({
+            icon: "success",
+            title: "Your photo has been deleted",
+            showConfirmButton: false,
+            timer: 1500,
+          });
         });
     },
     deleteCoverImage() {
