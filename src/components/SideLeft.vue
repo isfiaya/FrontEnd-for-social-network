@@ -80,21 +80,27 @@ export default {
   methods: {
     getOneUser() {
       const userId = localStorage.getItem("id");
-      axios.get("http://localhost:3000/home/users").then((response) => {
-        if (response.data) {
-          const data = response.data;
-          const dataFilter = data.filter((user) => user.id == parseInt(userId));
-          this.img = dataFilter[0].imageUser;
-        }
-      });
+      axios
+        .get("https://social-network-groupmonia.herokuapp.com/home/users")
+        .then((response) => {
+          if (response.data) {
+            const data = response.data;
+            const dataFilter = data.filter(
+              (user) => user.id == parseInt(userId)
+            );
+            this.img = dataFilter[0].imageUser;
+          }
+        });
     },
     fetchPost() {
       const id = localStorage.getItem("id");
-      axios.get("http://localhost:3000/home").then((response) => {
-        const data = response.data;
-        const dataFilter = data.filter((post) => post.userId == id);
-        this.numberPost = dataFilter.length;
-      });
+      axios
+        .get("https://social-network-groupmonia.herokuapp.com/home")
+        .then((response) => {
+          const data = response.data;
+          const dataFilter = data.filter((post) => post.userId == id);
+          this.numberPost = dataFilter.length;
+        });
     },
   },
   created: function () {
