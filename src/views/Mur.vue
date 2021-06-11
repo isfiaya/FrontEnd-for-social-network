@@ -16,18 +16,24 @@
         <aside class="col-lg-4 main-aside">
           <SideRight />
         </aside>
-        <div class="customToast" v-if="toast">
-          <p>Like Added</p>
-          <i class="fas fa-check-circle"></i>
-        </div>
-        <div class="customToast" v-if="toastComment">
-          <p>Comment Added</p>
-          <i class="fas fa-check-circle"></i>
-        </div>
-        <div class="customToast customColor" v-if="toastCommentDeleted">
-          <p>Comment Deleted</p>
-          <i class="far fa-trash-alt"></i>
-        </div>
+        <transition name="slide-fade">
+          <div class="customToast" v-if="toast">
+            <p>Like Added</p>
+            <i class="fas fa-check-circle"></i>
+          </div>
+        </transition>
+        <transition name="slide-fade">
+          <div class="customToast" v-if="toastComment">
+            <p>Comment Added</p>
+            <i class="fas fa-check-circle"></i>
+          </div>
+        </transition>
+        <transition name="slide-fade">
+          <div class="customToast customColor" v-if="toastCommentDeleted">
+            <p>Comment Deleted</p>
+            <i class="far fa-trash-alt"></i>
+          </div>
+        </transition>
       </div>
     </div>
   </div>
@@ -199,5 +205,16 @@ export default {
       display: block;
     }
   }
+}
+.slide-fade-enter-active {
+  transition: all 0.3s ease;
+}
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-enter,
+.slide-fade-leave-to {
+  transform: translateX(10px);
+  opacity: 0;
 }
 </style>
