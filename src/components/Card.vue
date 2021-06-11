@@ -424,7 +424,7 @@ export default {
       border-radius: 30px;
       outline: none;
       border: 2px solid #e7edf2;
-      background-color: $backgroundComment;
+      background-color: #eeeeee;
     }
   }
   .btnComment {

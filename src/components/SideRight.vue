@@ -52,16 +52,13 @@ export default {
 .main {
   border-radius: 12px;
   background: rgba(130, 36, 227, 0.02);
-  background: linear-gradient(
-    138deg,
-    rgba(255, 118, 117, 0.23853291316526615) 64%,
-    rgba(214, 48, 49, 0.3561799719887955) 76%
-  );
+  background: $backgroundSection;
 
   padding: 10px 0px 20px 15px;
   h3 {
     font-size: medium;
     position: relative;
+    color: #fff;
   }
   h3::before {
     content: "";

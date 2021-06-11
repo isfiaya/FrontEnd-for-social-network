@@ -39,7 +39,7 @@ export default {
     margin-left: 15px;
     line-height: 1.5;
     a {
-      color: black;
+      color: rgb(255 255 255 / 70%);
       text-decoration: none;
     }
     p {
