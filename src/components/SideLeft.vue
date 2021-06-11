@@ -118,7 +118,14 @@ export default {
   overflow: auto;
   height: 100vh;
   background-color: #f8f9fb;
+  transition: all 400ms ease-in-out;
 }
+.wrap:hover {
+  &::-webkit-scrollbar-thumb {
+    background-color: rgb(209, 203, 203);
+  }
+}
+
 .style::-webkit-scrollbar-track {
   border-radius: 10px;
   background: transparent;
@@ -129,7 +136,7 @@ export default {
 }
 .style::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background-color: rgb(209, 203, 203);
+  // background-color: rgb(209, 203, 203);
   visibility: visible;
 }
 .header {
