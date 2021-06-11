@@ -56,7 +56,7 @@ export default {
     getUserPost() {
       const id = this.$route.params.id;
       axios
-        .post("https://social-network-groupmonia.herokuapp.com/home/profile", {
+        .post("http://localhost:3000/home/profile", {
           id: id,
         })
         .then((response) => {

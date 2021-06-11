@@ -21,7 +21,7 @@ export default {
       this.idUserProfile = id;
       // console.log(id);
       axios
-        .post("https://social-network-groupmonia.herokuapp.com/home/users", {
+        .post("http://localhost:3000/home/users", {
           id: id,
         })
         .then((response) => {

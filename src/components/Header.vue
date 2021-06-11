@@ -104,17 +104,15 @@ export default {
       formData.append("image", this.file);
       formData.append("id", id);
       axios
-        .post(
-          "https://social-network-groupmonia.herokuapp.com/home/users/images",
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        )
+        .post("http://localhost:3000/home/users/images", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
         .then((response) => {
           console.log(response);
+          this.$root.$refs.card.getOneUser();
+          this.$root.$refs.nav.getOneUser();
         });
     },
     setCoverImage() {
@@ -123,15 +121,11 @@ export default {
       formData.append("image", this.fileCover);
       formData.append("id", id);
       axios
-        .post(
-          "https://social-network-groupmonia.herokuapp.com/home/users/images/cover",
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        )
+        .post("http://localhost:3000/home/users/images/cover", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
         .then((response) => {
           console.log(response);
         });
@@ -146,7 +140,7 @@ export default {
       const id = this.$route.params.id;
       this.idUserProfile = id;
       axios
-        .post("https://social-network-groupmonia.herokuapp.com/home/users", {
+        .post("http://localhost:3000/home/users", {
           id: id,
         })
         .then((response) => {
@@ -160,30 +154,26 @@ export default {
     deleteImageProfile() {
       const id = localStorage.getItem("id");
       axios
-        .delete(
-          "https://social-network-groupmonia.herokuapp.com/home/users/images",
-          {
-            data: {
-              id: id,
-            },
-          }
-        )
+        .delete("http://localhost:3000/home/users/images", {
+          data: {
+            id: id,
+          },
+        })
         .then((response) => {
           console.log(response);
           this.img = null;
+          this.$root.$refs.card.getOneUser();
+          this.$root.$refs.nav.getOneUser();
         });
     },
     deleteCoverImage() {
       const id = localStorage.getItem("id");
       axios
-        .delete(
-          "https://social-network-groupmonia.herokuapp.com/home/users/images/cover",
-          {
-            data: {
-              id: id,
-            },
-          }
-        )
+        .delete("http://localhost:3000/home/users/images/cover", {
+          data: {
+            id: id,
+          },
+        })
         .then((response) => {
           console.log(response);
           this.coverImg = null;
@@ -196,20 +186,10 @@ export default {
       }
     },
   },
-  watch: {
-    img: {
-      handler: function () {
-        this.$parent.$refs.nav.getOneUser();
-        // this.$parent.$refs.card[0].getOneUser();
-        // console.log(this.$parent.$refs.card.length);
-      },
-      deep: true,
-      immediate: true,
-    },
-  },
 
   created() {
     this.getOneUser();
+    this.$root.$refs.header = this;
   },
 };
 </script>

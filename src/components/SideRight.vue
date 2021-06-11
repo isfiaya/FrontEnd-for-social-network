@@ -33,13 +33,11 @@ export default {
   },
   created() {
     const userId = localStorage.getItem("id");
-    axios
-      .get("https://social-network-groupmonia.herokuapp.com/home/users")
-      .then((response) => {
-        const data = response.data;
-        const dataFilter = data.filter((user) => user.id !== parseInt(userId));
-        this.users = dataFilter.slice(0, 7);
-      });
+    axios.get("http://localhost:3000/home/users").then((response) => {
+      const data = response.data;
+      const dataFilter = data.filter((user) => user.id !== parseInt(userId));
+      this.users = dataFilter.slice(0, 7);
+    });
   },
 };
 </script>

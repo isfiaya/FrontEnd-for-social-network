@@ -88,7 +88,7 @@ export default {
       const id = this.$route.params.id;
 
       axios
-        .post("https://social-network-groupmonia.herokuapp.com/home/users", {
+        .post("http://localhost:3000/home/users", {
           id: id,
         })
         .then((response) => {
@@ -106,18 +106,18 @@ export default {
     submitInfoUser() {
       const id = localStorage.getItem("id");
       axios
-        .post(
-          "https://social-network-groupmonia.herokuapp.com/home/users/info",
-          {
-            id: id,
-            dateBrith: this.dateBrith,
-            gender: this.gender,
-            city: this.city,
-            country: this.country,
-          }
-        )
+        .post("http://localhost:3000/home/users/info", {
+          id: id,
+          firstName: this.firstName,
+          lastName: this.lastName,
+          dateBrith: this.dateBrith,
+          gender: this.gender,
+          city: this.city,
+          country: this.country,
+        })
         .then((response) => {
           console.log(response);
+          this.$root.$refs.header.getOneUser();
           Swal.fire({
             icon: "success",
             title: "Your changes has been saved",
@@ -139,14 +139,11 @@ export default {
         if (result.isConfirmed) {
           const id = localStorage.getItem("id");
           axios
-            .delete(
-              "https://social-network-groupmonia.herokuapp.com/home/users/info",
-              {
-                data: {
-                  id: id,
-                },
-              }
-            )
+            .delete("http://localhost:3000/home/users/info", {
+              data: {
+                id: id,
+              },
+            })
             .then((response) => {
               console.log(response);
               localStorage.clear();

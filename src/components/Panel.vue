@@ -51,15 +51,11 @@ export default {
 
       if (this.file || this.message) {
         await axios
-          .post(
-            "https://social-network-groupmonia.herokuapp.com/home",
-            formData,
-            {
-              headers: {
-                "Content-Type": "multipart/form-data",
-              },
-            }
-          )
+          .post("http://localhost:3000/home", formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          })
           .then(() => {
             Swal.fire({
               icon: "success",

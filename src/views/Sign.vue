@@ -93,7 +93,7 @@ export default {
         this.submitStatus = "ERROR";
       } else {
         axios
-          .post("https://social-network-groupmonia.herokuapp.com/signup", {
+          .post("http://localhost:3000/signup", {
             first_name: this.first_name,
             last_name: this.last_name,
             email: this.email,

@@ -66,28 +66,21 @@ export default {
     },
     getOneUser() {
       const userId = localStorage.getItem("id");
-      axios
-        .get("https://social-network-groupmonia.herokuapp.com/home/users")
-        .then((response) => {
-          if (response.data) {
-            const data = response.data;
-            const dataFilter = data.filter(
-              (user) => user.id == parseInt(userId)
-            );
-            this.img = dataFilter[0].imageUser;
-          }
-        });
+      axios.get("http://localhost:3000/home/users").then((response) => {
+        if (response.data) {
+          const data = response.data;
+          const dataFilter = data.filter((user) => user.id == parseInt(userId));
+          this.img = dataFilter[0].imageUser;
+        }
+      });
     },
     searchUsers() {
       const words = this.search;
       if (words.length) {
         axios
-          .post(
-            "https://social-network-groupmonia.herokuapp.com/home/users/search",
-            {
-              words: words,
-            }
-          )
+          .post("http://localhost:3000/home/users/search", {
+            words: words,
+          })
           .then((response) => {
             const data = response.data;
             this.users = data;
@@ -110,6 +103,7 @@ export default {
   },
   created() {
     this.getOneUser();
+    this.$root.$refs.nav = this;
   },
 };
 </script>

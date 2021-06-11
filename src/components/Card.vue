@@ -104,7 +104,7 @@ export default {
       const id = localStorage.getItem("id");
       const userId = parseInt(id);
       axios
-        .post("https://social-network-groupmonia.herokuapp.com/home/like", {
+        .post("http://localhost:3000/home/like", {
           userId: userId,
           postId: this.postId,
         })
@@ -123,22 +123,20 @@ export default {
     fetchData() {
       const id = localStorage.getItem("id");
       const userId = parseInt(id);
-      axios
-        .get("https://social-network-groupmonia.herokuapp.com/home/like")
-        .then((response) => {
-          const data = response.data;
-          const likes = data.filter((like) => like.postId == this.postId);
-          this.numberLikes = likes.length;
+      axios.get("http://localhost:3000/home/like").then((response) => {
+        const data = response.data;
+        const likes = data.filter((like) => like.postId == this.postId);
+        this.numberLikes = likes.length;
 
-          const userLikes = likes.filter((user) => user.userId == userId);
+        const userLikes = likes.filter((user) => user.userId == userId);
 
-          if (userLikes.length > 0) {
-            this.isLike = true;
-          }
-          if (userLikes.length == 0) {
-            this.isLike = false;
-          }
-        });
+        if (userLikes.length > 0) {
+          this.isLike = true;
+        }
+        if (userLikes.length == 0) {
+          this.isLike = false;
+        }
+      });
     },
 
     timeSince() {
@@ -175,14 +173,11 @@ export default {
       const comment = this.userComment;
       if (comment) {
         axios
-          .post(
-            "https://social-network-groupmonia.herokuapp.com/home/comment",
-            {
-              userId: userId,
-              postId: postId,
-              comment: comment,
-            }
-          )
+          .post("http://localhost:3000/home/comment", {
+            userId: userId,
+            postId: postId,
+            comment: comment,
+          })
           .then((response) => {
             console.log(response);
             this.$parent.showToastComment();
@@ -193,16 +188,14 @@ export default {
     },
     getComment() {
       const postId = this.postId;
-      axios
-        .get("https://social-network-groupmonia.herokuapp.com/home/comment")
-        .then((response) => {
-          const data = response.data;
-          const dataFilterComment = data.filter(
-            (comment) => comment.postId == postId
-          );
-          this.numberComment = dataFilterComment.length;
-          this.arrayComments = dataFilterComment;
-        });
+      axios.get("http://localhost:3000/home/comment").then((response) => {
+        const data = response.data;
+        const dataFilterComment = data.filter(
+          (comment) => comment.postId == postId
+        );
+        this.numberComment = dataFilterComment.length;
+        this.arrayComments = dataFilterComment;
+      });
     },
     showBtnDelete() {
       const id = localStorage.getItem("id");
@@ -223,7 +216,7 @@ export default {
         if (result.isConfirmed) {
           const id = this.postId;
           axios
-            .delete("https://social-network-groupmonia.herokuapp.com/home", {
+            .delete("http://localhost:3000/home", {
               data: {
                 id: id,
               },
@@ -249,18 +242,16 @@ export default {
     },
     getOneUser() {
       const userId = this.userId;
-      axios
-        .get("https://social-network-groupmonia.herokuapp.com/home/users")
-        .then((response) => {
-          const data = response.data;
-          const dataFilter = data.filter((user) => user.id == parseInt(userId));
-          this.picProfile = dataFilter[0].imageUser;
-        });
+      axios.get("http://localhost:3000/home/users").then((response) => {
+        const data = response.data;
+        const dataFilter = data.filter((user) => user.id == parseInt(userId));
+        this.picProfile = dataFilter[0].imageUser;
+      });
     },
     getImgCommentSection() {
       const id = localStorage.getItem("id");
       axios
-        .post("https://social-network-groupmonia.herokuapp.com/home/users", {
+        .post("http://localhost:3000/home/users", {
           id: id,
         })
         .then((response) => {
@@ -277,6 +268,7 @@ export default {
     this.showBtnDelete();
     this.getOneUser();
     this.getImgCommentSection();
+    this.$root.$refs.card = this;
   },
   props: [
     "desc",
