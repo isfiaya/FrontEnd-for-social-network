@@ -30,7 +30,7 @@
         </figure>
       </div>
       <div class="post-meta">
-        <button class="post-meta-like" @click="submitClick">
+        <button class="post-meta-like" @click="submitClick ">
           <i class="far fa-thumbs-up" :class="{likeBtn : isLike}"></i>
           <span>{{ numberLikes}}</span>
           <span>Likes</span>
@@ -112,6 +112,7 @@ export default {
           if (response.data.like) {
             this.numberLikes++;
             this.isLike = true;
+            this.$parent.showToast();
           }
           if (!response.data.like) {
             this.numberLikes--;
@@ -179,6 +180,7 @@ export default {
           })
           .then((response) => {
             console.log(response);
+            this.$parent.showToastComment();
             this.getComment();
             this.userComment = "";
           });
@@ -258,6 +260,7 @@ export default {
         });
     },
   },
+
   created() {
     this.getComment();
     this.fetchData();

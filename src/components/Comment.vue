@@ -57,6 +57,7 @@ export default {
         .then((response) => {
           console.log(response);
           this.getComment();
+          this.$parent.$parent.showToastDeleteComment();
         });
     },
     getComment() {
