@@ -1,6 +1,6 @@
 ![Groupomania Logo](./src/assets/logo-bg.png)
 
-# Build-API: Create a social network for the Groupomania company
+# Create a social network for the Groupomania company
 
 ## Prerequis
 
