@@ -112,8 +112,6 @@ export default {
         })
         .then((response) => {
           console.log(response);
-          this.$root.$refs.card.getOneUser();
-          this.$root.$refs.nav.getOneUser();
           this.$router.go();
           Swal.fire({
             icon: "success",
@@ -170,13 +168,14 @@ export default {
         .then((response) => {
           console.log(response);
           this.img = null;
-          this.$router.go();
+
           Swal.fire({
             icon: "success",
             title: "Your photo has been deleted",
             showConfirmButton: false,
             timer: 1500,
           });
+          this.$router.go();
         });
     },
     deleteCoverImage() {

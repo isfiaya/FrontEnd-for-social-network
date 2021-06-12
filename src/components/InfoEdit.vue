@@ -16,18 +16,18 @@
     </div>
     <table class="table">
       <tbody>
-        <tr>
+        <!-- <tr>
           <td class="label">First Name</td>
           <td class="pl-4">
             <input type="text" v-model="firstName" class="field-1" />
           </td>
-        </tr>
-        <tr>
+        </tr>-->
+        <!-- <tr>
           <td class="label">Last Name</td>
           <td class="pl-4">
             <input type="text" v-model="lastName" class="field-1" />
           </td>
-        </tr>
+        </tr>-->
         <tr>
           <td class="label">Date of Birth</td>
           <td class="pl-4">
@@ -75,8 +75,8 @@ export default {
   name: "InfoEdit",
   data() {
     return {
-      firstName: null,
-      lastName: null,
+      // firstName: null,
+      // lastName: null,
       city: null,
       country: null,
       dateBrith: null,
@@ -92,11 +92,10 @@ export default {
           id: id,
         })
         .then((response) => {
-          this.firstName = response.data[0].first_name;
-          this.lastName = response.data[0].last_name;
+          // this.firstName = response.data[0].first_name;
+          // this.lastName = response.data[0].last_name;
           this.city = response.data[0].city;
           this.country = response.data[0].country;
-          this.gender = response.data[0].gender;
           this.gender = response.data[0].gender;
           if (response.data[0].dateBrith) {
             this.dateBrith = response.data[0].dateBrith.split("T")[0];
@@ -108,8 +107,8 @@ export default {
       axios
         .post("http://localhost:3000/home/users/info", {
           id: id,
-          firstName: this.firstName,
-          lastName: this.lastName,
+          // firstName: this.firstName,
+          // lastName: this.lastName,
           dateBrith: this.dateBrith,
           gender: this.gender,
           city: this.city,
@@ -117,7 +116,9 @@ export default {
         })
         .then((response) => {
           console.log(response);
-          this.$root.$refs.header.getOneUser();
+          // localStorage.setItem("first_name", this.firstName);
+          // localStorage.setItem("last_name", this.lastName);
+          // this.$root.$refs.header.getOneUser();
           Swal.fire({
             icon: "success",
             title: "Your changes has been saved",
@@ -242,6 +243,9 @@ h2 {
 .btn-save-change:hover {
   background-image: none;
 }
+.btn-save-change:active {
+  transform: translateY(2px);
+}
 .btn-delete-account {
   background-color: #d63031;
   box-shadow: 0 1px 2px 0 rgb(130 36 227 / 50%);
@@ -249,5 +253,8 @@ h2 {
   border-radius: 30px;
   text-align: center;
   padding: 0.475rem 1rem;
+}
+.btn-delete-account:active {
+  transform: translateY(2px);
 }
 </style>

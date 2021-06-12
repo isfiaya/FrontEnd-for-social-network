@@ -23,6 +23,24 @@
         <router-view name="InfoEdit"></router-view>
       </div>
     </main>
+    <!-- <transition name="slide-fade">
+      <div class="customToast" v-if="toast">
+        <p>Like Added</p>
+        <i class="fas fa-check-circle"></i>
+      </div>
+    </transition>
+    <transition name="slide-fade">
+      <div class="customToast" v-if="toastComment">
+        <p>Comment Added</p>
+        <i class="fas fa-check-circle"></i>
+      </div>
+    </transition>
+    <transition name="slide-fade">
+      <div class="customToast customColor" v-if="toastCommentDeleted">
+        <p>Comment Deleted</p>
+        <i class="far fa-trash-alt"></i>
+      </div>
+    </transition>-->
   </div>
 </template>
 
@@ -31,16 +49,13 @@ import Nav from "../components/Nav";
 import ProfileSide from "../components/ProfileSide";
 import Header from "../components/Header";
 
-// import Panel from "../components/Panel";
 import axios from "axios";
 export default {
   name: "Profile",
   components: {
     Nav,
-    // Panel,
     ProfileSide,
     Header,
-    // Card,
   },
   data() {
     return {
@@ -145,6 +160,31 @@ main {
   }
   @media (max-width: 768px) {
     margin-top: 10rem;
+  }
+}
+.customToast {
+  border: black 1px solid;
+  width: 250px;
+  padding: 10px;
+  background-color: rgb(12 10 10 / 88%);
+  position: fixed;
+  z-index: 10000;
+  bottom: 30px;
+  left: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  p {
+    color: white;
+    margin-bottom: 0;
+  }
+  i {
+    color: green;
+  }
+}
+.customColor {
+  i {
+    color: red !important;
   }
 }
 </style>

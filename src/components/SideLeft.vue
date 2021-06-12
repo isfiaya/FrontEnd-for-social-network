@@ -85,6 +85,8 @@ export default {
           const data = response.data;
           const dataFilter = data.filter((user) => user.id == parseInt(userId));
           this.img = dataFilter[0].imageUser;
+          this.first_name = dataFilter[0].first_name;
+          this.last_name = dataFilter[0].last_name;
         }
       });
     },
@@ -98,8 +100,6 @@ export default {
     },
   },
   created: function () {
-    this.first_name = localStorage.getItem("first_name");
-    this.last_name = localStorage.getItem("last_name");
     this.getOneUser();
     this.fetchPost();
   },
