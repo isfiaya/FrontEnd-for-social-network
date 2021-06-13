@@ -18,6 +18,24 @@
         </aside>
       </div>
     </div>
+    <transition name="slide-fade">
+      <div class="customToast" v-if="toast">
+        <p>Like Added</p>
+        <i class="fas fa-check-circle"></i>
+      </div>
+    </transition>
+    <transition name="slide-fade">
+      <div class="customToast" v-if="toastComment">
+        <p>Comment Added</p>
+        <i class="fas fa-check-circle"></i>
+      </div>
+    </transition>
+    <transition name="slide-fade">
+      <div class="customToast customColor" v-if="toastCommentDeleted">
+        <p>Comment Deleted</p>
+        <i class="far fa-trash-alt"></i>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -65,28 +83,21 @@ export default {
         this.$refs.nav.search = "";
       }
     },
-    showToast() {
-      this.toast = true;
-      setTimeout(() => {
-        this.toast = false;
-      }, 2000);
-    },
-    showToastComment() {
-      this.toastComment = true;
-      setTimeout(() => {
-        this.toastComment = false;
-      }, 2000);
-    },
-    showToastDeleteComment() {
-      this.toastCommentDeleted = true;
-      setTimeout(() => {
-        this.toastCommentDeleted = false;
-      }, 2000);
-    },
   },
   watch: {
     posts: function () {
       this.$refs.sideLeft.fetchPost();
+    },
+  },
+  computed: {
+    toast() {
+      return this.$store.state.toast;
+    },
+    toastComment() {
+      return this.$store.state.toastComment;
+    },
+    toastCommentDeleted() {
+      return this.$store.state.toastCommentDeleted;
     },
   },
   mounted() {
@@ -109,31 +120,31 @@ export default {
     margin-left: 25%;
   }
 }
-// .customToast {
-//   border: black 1px solid;
-//   width: 250px;
-//   padding: 10px;
-//   background-color: rgb(12 10 10 / 88%);
-//   position: fixed;
-//   z-index: 10000;
-//   bottom: 30px;
-//   left: 40px;
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   p {
-//     color: white;
-//     margin-bottom: 0;
-//   }
-//   i {
-//     color: green;
-//   }
-// }
-// .customColor {
-//   i {
-//     color: red !important;
-//   }
-// }
+.customToast {
+  border: black 1px solid;
+  width: 250px;
+  padding: 10px;
+  background-color: rgb(12 10 10 / 88%);
+  position: fixed;
+  z-index: 10000;
+  bottom: 30px;
+  left: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  p {
+    color: white;
+    margin-bottom: 0;
+  }
+  i {
+    color: green;
+  }
+}
+.customColor {
+  i {
+    color: red !important;
+  }
+}
 .btn-share {
   color: white;
 }

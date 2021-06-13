@@ -112,8 +112,7 @@ export default {
           if (response.data.like) {
             this.numberLikes++;
             this.isLike = true;
-            // this.$root.$refs.mur.showToast();
-            // this.$parent.showToast();
+            this.$store.commit("showToast");
           }
           if (!response.data.like) {
             this.numberLikes--;
@@ -181,8 +180,7 @@ export default {
           })
           .then((response) => {
             console.log(response);
-            // this.$root.$refs.mur.showToastComment();
-            // this.$parent.showToastComment();
+            this.$store.commit("showToastComment");
             this.getComment();
             this.userComment = "";
           });
