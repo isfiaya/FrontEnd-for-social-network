@@ -49,11 +49,14 @@ export default {
   methods: {
     deleteComment() {
       axios
-        .delete("http://localhost:3000/home/comment", {
-          data: {
-            idComment: this.idComment,
-          },
-        })
+        .delete(
+          "https://social-network-groupmonia.herokuapp.com/home/comment",
+          {
+            data: {
+              idComment: this.idComment,
+            },
+          }
+        )
         .then((response) => {
           console.log(response);
           this.getComment();
@@ -75,10 +78,13 @@ export default {
         return this.deleteComment();
       }
       axios
-        .post("http://localhost:3000/home/comment/edit", {
-          id: this.CommentID,
-          comment: newComment,
-        })
+        .post(
+          "https://social-network-groupmonia.herokuapp.com/home/comment/edit",
+          {
+            id: this.CommentID,
+            comment: newComment,
+          }
+        )
         .then((response) => {
           console.log(response);
           this.getComment();
@@ -99,16 +105,18 @@ export default {
   created() {
     const userId = this.id;
     const userConnect = localStorage.getItem("id");
-    axios.get("http://localhost:3000/home/users").then((response) => {
-      const data = response.data;
-      const dataFilter = data.filter((user) => user.id == parseInt(userId));
-      this.firstName = dataFilter[0].first_name;
-      this.lastName = dataFilter[0].last_name;
-      this.img = dataFilter[0].imageUser;
-      if (dataFilter[0].id == userConnect) {
-        this.userCommentId = true;
-      }
-    });
+    axios
+      .get("https://social-network-groupmonia.herokuapp.com/home/users")
+      .then((response) => {
+        const data = response.data;
+        const dataFilter = data.filter((user) => user.id == parseInt(userId));
+        this.firstName = dataFilter[0].first_name;
+        this.lastName = dataFilter[0].last_name;
+        this.img = dataFilter[0].imageUser;
+        if (dataFilter[0].id == userConnect) {
+          this.userCommentId = true;
+        }
+      });
   },
 };
 </script>

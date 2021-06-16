@@ -88,7 +88,7 @@ export default {
       const id = this.$route.params.id;
 
       axios
-        .post("http://localhost:3000/home/users", {
+        .post("https://social-network-groupmonia.herokuapp.com/home/users", {
           id: id,
         })
         .then((response) => {
@@ -105,15 +105,18 @@ export default {
     submitInfoUser() {
       const id = localStorage.getItem("id");
       axios
-        .post("http://localhost:3000/home/users/info", {
-          id: id,
-          // firstName: this.firstName,
-          // lastName: this.lastName,
-          dateBrith: this.dateBrith,
-          gender: this.gender,
-          city: this.city,
-          country: this.country,
-        })
+        .post(
+          "https://social-network-groupmonia.herokuapp.com/home/users/info",
+          {
+            id: id,
+            // firstName: this.firstName,
+            // lastName: this.lastName,
+            dateBrith: this.dateBrith,
+            gender: this.gender,
+            city: this.city,
+            country: this.country,
+          }
+        )
         .then((response) => {
           console.log(response);
           // localStorage.setItem("first_name", this.firstName);
@@ -140,11 +143,14 @@ export default {
         if (result.isConfirmed) {
           const id = localStorage.getItem("id");
           axios
-            .delete("http://localhost:3000/home/users/info", {
-              data: {
-                id: id,
-              },
-            })
+            .delete(
+              "https://social-network-groupmonia.herokuapp.com/home/users/info",
+              {
+                data: {
+                  id: id,
+                },
+              }
+            )
             .then((response) => {
               console.log(response);
               localStorage.clear();

@@ -105,13 +105,18 @@ export default {
       formData.append("image", this.file);
       formData.append("id", id);
       axios
-        .post("http://localhost:3000/home/users/images", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        })
+        .post(
+          "https://social-network-groupmonia.herokuapp.com/home/users/images",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        )
         .then((response) => {
           console.log(response);
+
           this.$router.go();
           Swal.fire({
             icon: "success",
@@ -127,11 +132,15 @@ export default {
       formData.append("image", this.fileCover);
       formData.append("id", id);
       axios
-        .post("http://localhost:3000/home/users/images/cover", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        })
+        .post(
+          "https://social-network-groupmonia.herokuapp.com/home/users/images/cover",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        )
         .then((response) => {
           console.log(response);
         });
@@ -146,7 +155,7 @@ export default {
       const id = this.$route.params.id;
       this.idUserProfile = id;
       axios
-        .post("http://localhost:3000/home/users", {
+        .post("https://social-network-groupmonia.herokuapp.com/home/users", {
           id: id,
         })
         .then((response) => {
@@ -160,15 +169,17 @@ export default {
     deleteImageProfile() {
       const id = localStorage.getItem("id");
       axios
-        .delete("http://localhost:3000/home/users/images", {
-          data: {
-            id: id,
-          },
-        })
+        .delete(
+          "https://social-network-groupmonia.herokuapp.com/home/users/images",
+          {
+            data: {
+              id: id,
+            },
+          }
+        )
         .then((response) => {
           console.log(response);
           this.img = null;
-
           Swal.fire({
             icon: "success",
             title: "Your photo has been deleted",
@@ -181,11 +192,14 @@ export default {
     deleteCoverImage() {
       const id = localStorage.getItem("id");
       axios
-        .delete("http://localhost:3000/home/users/images/cover", {
-          data: {
-            id: id,
-          },
-        })
+        .delete(
+          "https://social-network-groupmonia.herokuapp.com/home/users/images/cover",
+          {
+            data: {
+              id: id,
+            },
+          }
+        )
         .then((response) => {
           console.log(response);
           this.coverImg = null;

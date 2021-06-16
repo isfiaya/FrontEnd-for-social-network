@@ -65,18 +65,20 @@ export default {
   },
   methods: {
     fetchAllPost() {
-      axios.get("http://localhost:3000/home").then((response) => {
-        // const token = response.data.token;
-        // if (token === false) {
-        //   return this.$router.replace("/login");
-        // }
-        const jwt = localStorage.getItem("jwt");
-        if (!jwt) {
-          return this.$router.replace("/login");
-        }
-        const data = response.data;
-        this.posts = data;
-      });
+      axios
+        .get("https://social-network-groupmonia.herokuapp.com/home")
+        .then((response) => {
+          // const token = response.data.token;
+          // if (token === false) {
+          //   return this.$router.replace("/login");
+          // }
+          const jwt = localStorage.getItem("jwt");
+          if (!jwt) {
+            return this.$router.replace("/login");
+          }
+          const data = response.data;
+          this.posts = data;
+        });
     },
     hiddenBoxSearch() {
       if (this.$refs.nav.search) {
@@ -105,6 +107,7 @@ export default {
   },
   created() {
     this.fetchAllPost();
+
     this.$root.$refs.mur = this;
   },
 };
