@@ -107,7 +107,7 @@ export default {
         border-radius: 7px;
         display: flex;
         flex-direction: column;
-        opacity: 80%;
+        color: hsl(0deg 0% 0% / 70%);
         cursor: pointer;
         padding-top: 3px;
         padding-bottom: 3px;

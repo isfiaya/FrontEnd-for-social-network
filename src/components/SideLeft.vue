@@ -167,7 +167,7 @@ export default {
   }
   p:nth-child(3) {
     font-size: small;
-    opacity: 70%;
+    opacity: 0.7;
   }
 }
 .main {
@@ -189,7 +189,7 @@ export default {
         margin-bottom: 50px;
         display: flex;
         flex-direction: column;
-        opacity: 80%;
+        color: hsl(0deg 0% 0% / 70%);
         padding: 5px;
         border-radius: 7px;
         cursor: pointer;
@@ -237,7 +237,7 @@ export default {
         display: flex;
         flex-direction: column;
         span {
-          opacity: 50%;
+          color: hsl(0deg 0% 0% / 70%);
         }
       }
     }
@@ -255,8 +255,7 @@ export default {
       transform: translateY(2px);
     }
     .member {
-      color: black;
-      opacity: 50%;
+      color: hsl(0deg 0% 0% / 70%);
     }
   }
   .info:active {

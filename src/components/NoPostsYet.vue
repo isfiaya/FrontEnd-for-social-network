@@ -54,7 +54,7 @@ export default {
   }
   h2 {
     margin-top: 15px;
-    opacity: 80%;
+    color: hsl(0deg 0% 0% / 70%);
   }
 }
 </style>
